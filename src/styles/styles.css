@@ -6,15 +6,15 @@
 @import url('footer.css');
 
 :root {
-    --color-primary-1: #fff9ea;
-    --color-primary-2: #ffe8b4;
+    --color-primary-1: #ffffff;
+    --color-primary-2: #9234e4;
     --color-primary-3: #f8d477;
     --color-primary-4: #ffe100;
     --color-primary-5: #ffcb45;
     --color-primary-6: #e9a209;
 
-    --color-neutral-0: #fff;
-    --color-neutral-1: #1d1d1d;
+    --color-neutral-0: #1d1d1d;
+    --color-neutral-1: #9234e4;
 }
 
 * {
@@ -38,10 +38,13 @@ section {
 
 .btn-default {
     border: none;
+    width: 50px; /* Largura do botão */
+    height: 50px; /* Altura do botão */
+    color: var(--color-neutral-1); /* Cor do ícone */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-primary-5);
+    background-color: rgba(29,29,29,255);
     border-radius: 12px;
     padding: 10px 14px;
     font-weight: 600;
@@ -50,8 +53,14 @@ section {
     transition: background-color .3s ease;
 }
 
+
 .btn-default:hover {
-    background-color: var(--color-primary-3);
+    background-color: #4B0082; /* Cor de fundo ao passar o mouse */
+    box-shadow: 0px 6px 16px rgba(52, 50, 53, 0.2); /* Sombra ao passar o mouse */
+}
+
+.btn-default:hover i {
+    color: #ffffff; /* Altera a cor do ícone para branco ao passar o mouse */
 }
 
 .social-media-buttons {

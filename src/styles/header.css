@@ -6,19 +6,47 @@ header {
     background-color: var(--color-primary-1);
     z-index: 3;
 }
-
 #navbar {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: center; /* Centraliza verticalmente os itens */
     justify-content: space-between;
 }
 
-#nav_logo {
-    font-size: 24px;
-    color: var(--color-primary-6);
+#logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espaço entre o logo e o texto */
 }
 
+#nav_logo {
+    width: 40px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+/* Estilos gerais para o logo-text */
+#logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 39%;
+    left: 10.1%;
+    color: var(--color-primary-6); /* Mantém o amarelo para "fólio" */
+}
+
+/* Estilo para "Port" no modo claro */
+.port {
+    color: #9434e4; /* Roxo no modo claro */
+}
+
+/* Estilo para "fólio" (permanece amarelo) */
+.folio {
+    color: var(--color-primary-6); /* Amarelo em ambos os modos */
+}
+
+/* Alterações para o modo escuro */
+body.dark-mode .port {
+    color: #ffffff; /* Branco no modo escuro */
+}
 #nav_list {
     display: flex;
     list-style: none;
@@ -27,7 +55,7 @@ header {
 
 .nav-item a {
     text-decoration: none;
-    color: #1d1d1dad;
+    color: #000000ad;
     font-weight: 600;
 }
 
@@ -43,6 +71,195 @@ header {
 #mobile_menu {
     display: none;
 }
+
+/* Estilo para o overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 10;
+    backdrop-filter: blur(8px); /* Aumenta o desfoque */
+}
+
+/* Estilo para o menu centralizado */
+#centralized-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    display: none;
+    z-index: 11;
+    font-family: Arial, sans-serif;
+}
+
+#centralized-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#centralized-menu ul li {
+    margin: 20px 0;
+}
+
+#centralized-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#centralized-menu ul li a:hover {
+    color: var(--color-primary-6);
+}
+
+/* Botão de fechar no menu centralizado */
+#close-menu {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Efeito de desfoque no conteúdo */
+.blur {
+    filter: blur(5px);
+}
+/* Container do toggle */
+.theme-toggle {
+    position: fixed;
+    top: 41px;
+    right: 230px;
+    z-index: 15;
+}
+
+/* Estilo para o input checkbox oculto */
+#theme-switch {
+    display: none;
+}
+
+/* Estilo para o switch */
+.switch {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc; /* Background inicial no modo claro */
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+/* Círculo deslizante */
+.switch::before {
+    content: "";
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Cor e posição para o modo Light */
+body:not(.dark-mode) .switch {
+    background-color: #ccc;
+}
+
+body:not(.dark-mode) .switch::before {
+    transform: translateX(0); /* Posição inicial no modo claro */
+}
+
+/* Cor e posição para o modo Dark */
+body.dark-mode .switch {
+    background-color: #4B0082; /* Roxo para o modo escuro */
+}
+
+body.dark-mode .switch::before {
+    transform: translateX(25px); /* Move o círculo para a direita no modo escuro */
+}
+
+
+/* Estilos gerais para o modo escuro */
+body.dark-mode {
+    --color-primary-1: #1d1d1d;
+    --color-primary-2: #252525;
+    --color-neutral-1: #ffffff;
+    --color-purple: #4B0082;
+    background-color: var(--color-primary-1);
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: var(--color-primary-2);
+}
+
+body.dark-mode .section-title {
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode .nav-item a {
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode .nav-item.active a {
+    color: var(--color-primary-4);
+    border-bottom: 3px solid var(--color-purple);
+}
+
+body.dark-mode .shape {
+    background-color: var(--color-primary-6);
+}
+body.dark-mode .btn-default,
+body.dark-mode .social-media-buttons a {
+    background-color: #4B0082;
+    color: #ffffff;; /* Cor do ícone ou texto para contraste */
+}
+
+/* Estilos do botão no modo escuro */
+body.dark-mode .btn-default {
+    background-color: #4B0082; /* Lilás escuro */
+    color: #ffffff; /* Barras brancas inicialmente */
+}
+
+body.dark-mode .btn-default i {
+    color: #ffffff; /* Cor inicial das barras para branco */
+}
+
+/* Efeito hover no modo escuro */
+body.dark-mode .btn-default:hover {
+    background-color: #ffffff; /* Cor de fundo ao passar o mouse */
+}
+
+body.dark-mode .btn-default:hover i {
+    color: #000000; /* Altera a cor das barras para preto ao passar o mouse */
+}
+
+body.dark-mode #centralized-menu ul li a {
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode #overlay {
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo mais escuro para o overlay */
+}
+
+
+
 
 @media screen and (max-width: 1170px) {
     #nav_list,
