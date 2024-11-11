@@ -1,0 +1,228 @@
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 50px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    color: #e9a209; /* Preto no modo claro */
+}
+
+.hero-content h1 span {
+    color: #9234e4;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #555555; /* Cinza escuro no modo claro */
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #9234e4;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #9234e4;
+    color: #9234e4;
+}
+
+/* Botão Hover Effect - Light and Dark Modes */
+body:not(.dark-mode) .btn-primary:hover,
+body:not(.dark-mode) .btn-secondary:hover {
+    box-shadow: 0px 0px 12px 8px rgba(146, 52, 228, 0.1);
+    transform: scale(1.05); /* Aumenta o tamanho para 105% */
+}
+
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-secondary:hover {
+    box-shadow: 0px 0px 12px 8px rgba(233, 162, 9, 0.10);
+    transform: scale(1.05); /* Aumenta o tamanho para 105% */
+}
+
+/* Hero Image */
+.hero-image {
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 1400px;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #9234e4;
+}
+
+.about-section {
+  width: 90%;
+  max-width: 800px;
+  margin: 60px auto;
+  text-align: center;
+  padding-bottom: 100px !important;
+}
+
+.about-section h2 {
+  font-size: 2rem;
+  color: #000000; /* Preto no modo claro */
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 1rem;
+  color: #555555; /* Cinza escuro no modo claro */
+  line-height: 1.6;
+}
+
+/* Adiciona a transição suave ao conteúdo */
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+/* Quando a classe "show" for adicionada, a opacidade será totalmente visível */
+.show {
+  opacity: 1;
+}
+
+/* Dark Mode Support */
+body.dark-mode .hero-content h1,
+body.dark-mode .about-section h2 {
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode .hero-content h1 span,
+body.dark-mode .btn-primary,
+body.dark-mode .btn-secondary {
+    color: var(--color-primary-6);
+}
+
+body.dark-mode .subtitle,
+body.dark-mode .about-section p {
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--color-primary-6);
+    color: var(--color-neutral-1);
+}
+
+body.dark-mode .btn-secondary {
+    border: 2px solid var(--color-primary-6);
+    color: var(--color-primary-6);
+}
+
+body.dark-mode .hero-image img {
+    border-color: var(--color-primary-6);
+}
+
+/* Estilos da linha do tempo */
+.timeline {
+    position: relative;
+    margin: 50px 0;
+    padding-left: 40px;
+    border-left: 3px solid #9234e4;
+}
+
+/* Ajuste para conectar os eventos à linha */
+.timeline-event {
+    position: relative;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    padding: 20px 20px 20px 50px; /* Alinha o evento com a linha */
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.timeline h4 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #080000;
+}
+
+.timeline p {
+    color: #000000;
+    font-size: 1rem;
+}
+
+.timeline-event.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efeito de destaque ao passar o mouse */
+.timeline-event:hover {
+    box-shadow: 0px 6px 15px rgba(146, 52, 228, 0.1), 0px 0px 12px rgba(146, 52, 228, 0.2); /* Aumenta a sombra */
+    transform: scale(1.02); /* Leve aumento no tamanho */
+    background-color: #ffffff; /* Opcional: ligeiramente mais claro para destacar */
+}
+
+body.dark-mode .timeline-event:hover {
+    background-color: #ffffff; /* Ajuste opcional para o fundo no modo escuro */
+    box-shadow: 0px 6px 15px rgba(233, 162, 9, 0.1), 0px 0px 12px rgba(233, 162, 9, 0.2); /* Sombra no tom amarelo */
+}
+body.dark-mode .timeline {
+    position: relative;
+    margin: 50px 0;
+    padding-left: 40px;
+    border-left: 3px solid var(--color-primary-6);
+}
+
+
+
+
+/* Ajuste da posição dos ícones */
+.timeline-icon {
+    position: absolute;
+    left: -22px;
+    top: 20px;
+    background-color: #9234e4;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    border: 3px solid #1d1d1d; /* Conecta visualmente o ícone à linha */
+}
+body.dark-mode .timeline-icon {
+    background-color: var(--color-primary-6);
+}
+
+.timeline-section {
+    padding-top: 100px !important;
+}

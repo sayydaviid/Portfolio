@@ -18,18 +18,22 @@
     <div id="centralized-menu">
         <button id="close-menu" style="background: none; border: none; font-size: 30px; color: white; cursor: pointer;">&times;</button>
         <ul>
-            <li><a href="#home">Início</a></li>
+            <li><a href="index.html">Início</a></li>
             <li><a href="#menu">Projetos em andamento</a></li>
             <li><a href="#testimonials">Projetos finalizados</a></li>
-            <li><a href="#contact">Contato</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </div>
     <header>
         <nav id="navbar">
-            <div id="logo-container">
-                <img src="src/images/teste.png" id="nav_logo" alt="Logo">
-                <span id="logo-text"><span class="port">Port</span><span class="folio">fólio</span></span>
-            </div>
+            
+            <!-- Link para index.html envolvendo o logo e o texto -->
+            <a href="index.html" id="logo-link">
+                <div id="logo-container">
+                    <img src="src/images/teste.png" id="nav_logo" alt="Logo">
+                    <span id="logo-text"><span class="port">Port</span><span class="folio">fólio</span></span>
+                </div>
+            </a>
             
             <ul id="nav_list">
                 <li class="nav-item active">
@@ -50,12 +54,14 @@
             <button id="mobile_btn">
                 <i class="fa-solid fa-bars"></i>
             </button>
+            
             <div class="theme-toggle">
                 <input type="checkbox" id="theme-switch" />
                 <label for="theme-switch" class="switch"></label>
             </div>         
         </nav>
     </header>
+    
     <main id="content">
         <section id="home">
             <div class="shape"></div>
@@ -93,33 +99,25 @@
 
             <div id="dishes">
                 <div class="dish">
-                    <div class="dish-heart">
-                        <i class="fa-solid fa-heart"></i>
+                    <div>
                     </div>
 
-                    <img src="src/images/dish4.png" class="dish-image" alt="">
+                    <img src="src/images/carrinho.png" class="dish-image carrinho-image" alt="">
 
                     <h3 class="dish-title">
-                        Lorem Ipsum
+                        Professor Physics
                     </h3>
 
                     <span class="dish-description">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </span>
 
-                    <div class="dish-rate">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span>(500+)</span>
+                    <div>
                     </div>
 
                     <div class="dish-price">
-                        <h4>R$20,00</h4>
                         <button class="btn-default">
-                            <i class="fa-solid fa-basket-shopping"></i>
+                            <i class="fa-solid fa-link"></i>
                         </button>
                     </div>
                 </div>
@@ -240,13 +238,6 @@
                         <div class="feedback-content">
                             <p>
                                 Fulana de Tal
-                                <span>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
                             </p>
                             <p>
                                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -261,13 +252,6 @@
                         <div class="feedback-content">
                             <p>
                                 Fulana de Tal
-                                <span>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </span>
                             </p>
                             <p>
                                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -277,9 +261,6 @@
                     </div>
                 </div>
 
-                <button class="btn-default">
-                    Ver mais
-                </button>
             </div>
         </section>
     </main>

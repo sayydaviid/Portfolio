@@ -22,7 +22,7 @@
     gap: 18px;
     width: 25%;
     padding: 20px;
-    background-color: var(--color-neutral-0);
+    background-color:  #ffffff;
     box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
@@ -43,16 +43,25 @@
     border-radius: 0px 37.5px 0px 42.5px;
 }
 
+.carrinho-image {
+    width: 200px; /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+}
 .dish-description {
-    color: #ffffff;
+    color: #000000;
     text-align: center;
 }
 
+.dish-title {
+    color: #000000; /* Define a cor do título para preto */
+}
 .dish-rate i {
     color: var(--color-primary-6);
 }
 
 .dish-price {
+    color: #000000;
     display: flex;
     align-items: center;
     gap: 20px;

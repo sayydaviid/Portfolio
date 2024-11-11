@@ -116,8 +116,17 @@ body.dark-mode .port {
     transition: color 0.3s ease;
 }
 
+/* Efeito de destaque ao passar o mouse */
 #centralized-menu ul li a:hover {
-    color: var(--color-primary-6);
+    color: var(--color-primary-6); /* Ajuste a cor de destaque */
+    transform: scale(1.1); /* Aumenta o tamanho do texto levemente */
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+}
+/* Estilo para o hover no modo escuro */
+body.dark-mode #centralized-menu ul li a:hover {
+     color: var(--color-primary-6); /* Ajuste a cor de destaque */
+    transform: scale(1.1); /* Aumenta o tamanho do texto levemente */
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
 }
 
 /* Botão de fechar no menu centralizado */
@@ -130,6 +139,11 @@ body.dark-mode .port {
     border: none;
     color: white;
     cursor: pointer;
+}
+/* Estilo para o hover no botão de fechar */
+#close-menu:hover {
+    color: var(--color-primary-6); /* Cor em destaque ao passar o mouse */
+    transform: scale(1.2); /* Aumenta ligeiramente o tamanho do "X" */
 }
 
 /* Efeito de desfoque no conteúdo */
@@ -192,7 +206,6 @@ body.dark-mode .switch {
 body.dark-mode .switch::before {
     transform: translateX(25px); /* Move o círculo para a direita no modo escuro */
 }
-
 
 /* Estilos gerais para o modo escuro */
 body.dark-mode {
