@@ -52,9 +52,32 @@
     color: #000000;
     text-align: center;
 }
+.gercom-imagem{
+    width: 200px; /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
 
+
+}
+.cybersecurity{
+    width: 430px; /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    position: relative;
+    left: 20px;
+
+}
+.ada {
+    width: 300px; /* Ajuste a largura conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    position: relative;
+    right: 17px;
+}
 .dish-title {
     color: #000000; /* Define a cor do título para preto */
+    text-align: center; /* Centraliza o texto */
+    margin-top: 10px; /* Espaço opcional para ajustar a posição vertical */
 }
 .dish-rate i {
     color: var(--color-primary-6);

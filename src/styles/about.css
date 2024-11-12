@@ -6,6 +6,7 @@
     width: 90%;
     max-width: 1200px;
     margin-top: 50px;
+    padding-bottom: 100px !important;
 }
 
 .hero-content {
@@ -225,4 +226,44 @@ body.dark-mode .timeline-icon {
 
 .timeline-section {
     padding-top: 100px !important;
+}
+
+/* Estilos responsivos para telas menores */
+@media screen and (max-width: 768px) {
+    .about-section {
+        padding: 20px 10px;
+    }
+    
+    .about-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-section p {
+        font-size: 0.9rem;
+    }
+    .hero-image {
+        position: absolute;
+        left: 420px;
+        width: auto;
+        height: auto;
+    }
+    .theme-toggle {
+        top: 30px;
+        right: 120px;
+}
+    .btn-primary, .btn-secondary {
+        margin-bottom: 10px; /* Espaçamento entre os botões */
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .about-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-section p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
 }

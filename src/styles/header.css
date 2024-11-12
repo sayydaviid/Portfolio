@@ -1,36 +1,43 @@
 header {
     width: 100%;
-    padding: 28px 8%;
+    padding: 20px 8%;
     position: sticky;
     top: 0;
     background-color: var(--color-primary-1);
     z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 #navbar {
     width: 100%;
     display: flex;
     align-items: center; /* Centraliza verticalmente os itens */
     justify-content: space-between;
+    flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
 }
 
 #logo-container {
     display: flex;
     align-items: center;
-    gap: 8px; /* Espaço entre o logo e o texto */
+    gap: 8px;
 }
 
 #nav_logo {
-    width: 40px; /* Ajuste o tamanho conforme necessário */
+    width: 40px;
     height: auto;
 }
-/* Estilos gerais para o logo-text */
+
 #logo-text {
     font-size: 18px;
     font-weight: bold;
-    position: absolute;
-    top: 39%;
-    left: 10.1%;
-    color: var(--color-primary-6); /* Mantém o amarelo para "fólio" */
+    color: var(--color-primary-6);
+    text-decoration: none; /* Remove a linha embaixo */
+}
+
+#logo-link {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: inherit; /* Mantém a cor definida no texto */
 }
 
 /* Estilo para "Port" no modo claro */
@@ -47,6 +54,7 @@ header {
 body.dark-mode .port {
     color: #ffffff; /* Branco no modo escuro */
 }
+/* Ajuste para telas grandes */
 #nav_list {
     display: flex;
     list-style: none;
@@ -63,7 +71,7 @@ body.dark-mode .port {
     color: var(--color-neutral-1);
     border-bottom: 3px solid var(--color-primary-4);
 }
-
+/* Botão mobile oculto em telas grandes */
 #mobile_btn {
     display: none;
 }
@@ -153,8 +161,8 @@ body.dark-mode #centralized-menu ul li a:hover {
 /* Container do toggle */
 .theme-toggle {
     position: fixed;
-    top: 41px;
-    right: 230px;
+    top: 34px;
+    right: 220px;
     z-index: 15;
 }
 
@@ -169,7 +177,6 @@ body.dark-mode #centralized-menu ul li a:hover {
     height: 25px;
     background-color: #ccc; /* Background inicial no modo claro */
     border-radius: 25px;
-    position: relative;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
@@ -274,35 +281,82 @@ body.dark-mode #overlay {
 
 
 
-@media screen and (max-width: 1170px) {
-    #nav_list,
-    #navbar .btn-default {
+/* Ajuste para o botão de dark mode em telas menores e com zoom */
+@media screen and (max-width: 1200px) {
+    .theme-toggle  {
+        top: 28px;
+        right: 10px;
+        transform: scale(1.1); /* Ajusta o tamanho para melhor visibilidade */
+
+    
+    }
+    .btn-default, body.dark-mode .btn-default {
+        right: 90px !important; /* Ajusta a posição do botão */
+        width: 40px !important; /* Ajusta o tamanho do botão e aplica !important */
+        height: 40px !important;
+        padding: 8px 12px !important;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .theme-toggle {
+        top: 28px;
+
+    }
+    .btn-default, body.dark-mode .btn-default {
+        right: 90px !important; /* Ajusta a posição do botão */
+        width: 40px !important; /* Ajusta o tamanho do botão e aplica !important */
+        height: 40px !important;
+        padding: 8px 12px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #nav_list, #logo-text{ 
+        width: 50%;
+        height: auto;
+        align-items: center; /* Centraliza verticalmente os itens */
+        right: 100px;
+
+    }
+    #nav_logo {
+        width: 30px;
+    }
+
+    .theme-toggle {
+        top: 33px;
+        right: 101px;
+    }
+    .btn-default, body.dark-mode .btn-default {
+        right: 90px !important; /* Ajusta a posição do botão */
+        width: 35px !important; /* Ajusta o tamanho do botão e aplica !important */
+        height: 40px !important;
+        padding: 8px 12px !important;
+    }
+}
+@media screen and (max-width: 600px) {
+    .theme-toggle {
+        top: 15px;
+        right: 50px; /* Mais próximo da margem para telas bem pequenas */
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    /* Esconde alguns elementos no cabeçalho e ajusta a posição do botão */
+    #nav_list {
         display: none;
     }
 
     #mobile_btn {
         display: block;
-        border: none;
-        background-color: transparent;
-        font-size: 1.5rem;
-        cursor: pointer;
+        position: absolute;
+        right: 20px;
     }
 
-    #mobile_menu.active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    .theme-toggle {
+        top: 20px;
+        right: 100px;
     }
-
-    #mobile_nav_list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin: 12px 0px;
-    }
-
-    #mobile_nav_list .nav-item {
-        list-style: none;
-        text-align: center;
-    } 
 }
