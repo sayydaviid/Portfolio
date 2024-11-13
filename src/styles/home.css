@@ -138,4 +138,7 @@
     #phone_button button {
         display: none;
     }
+    #cta .title {
+        font-size: 2.5rem;
+    }
 }
