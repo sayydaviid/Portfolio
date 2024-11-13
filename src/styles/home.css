@@ -132,10 +132,18 @@
         text-align: center;
         align-items: center;
     }
+
 }
 
 @media screen and (max-width: 450px) {
     #phone_button button {
         display: none;
     }
+    #cta .title {
+        font-size: 2.5rem;
+    }
+    .theme-toggle {
+        top: 27px;
+        left: 290px;
+}
 }

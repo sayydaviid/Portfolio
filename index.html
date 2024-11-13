@@ -262,7 +262,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const menuBtn = document.querySelector(".btn-default");
-            const mobileMenuBtn = document.getElementById("mobile_btn");
             const overlay = document.getElementById("overlay");
             const centralizedMenu = document.getElementById("centralized-menu");
             const closeMenu = document.getElementById("close-menu");
@@ -273,7 +272,7 @@
             function openMenu() {
                 overlay.style.display = "block";
                 centralizedMenu.style.display = "flex";
-                centralizedMenu.style.opacity = "1"; // Faz o menu aparecer com a transição
+                centralizedMenu.style.opacity = "1"; // Faz o menu aparecer
                 content.classList.add("blur");
                 header.classList.add("blur");
             }
@@ -281,23 +280,31 @@
             function closeMenuFunc() {
                 overlay.style.display = "none";
                 centralizedMenu.style.display = "none";
-                centralizedMenu.style.opacity = "0"; // Faz o menu desaparecer com a transição
+                centralizedMenu.style.opacity = "0"; // Faz o menu desaparecer
                 content.classList.remove("blur");
                 header.classList.remove("blur");
             }
         
-            // Abrir o menu ao clicar nos botões
-            menuBtn.addEventListener("click", openMenu);
-            mobileMenuBtn.addEventListener("click", openMenu);
+            // Abrir o menu ao clicar no botão
+            if (menuBtn) {
+                menuBtn.addEventListener("click", openMenu);
+            }
         
             // Fechar o menu ao clicar no overlay ou no botão de fechar
-            overlay.addEventListener("click", closeMenuFunc);
-            closeMenu.addEventListener("click", closeMenuFunc);
+            if (overlay) {
+                overlay.addEventListener("click", closeMenuFunc);
+            }
+        
+            if (closeMenu) {
+                closeMenu.addEventListener("click", closeMenuFunc);
+            }
         
             // Fechar o menu automaticamente ao clicar em qualquer item
-            menuItems.forEach(item => {
-                item.addEventListener("click", closeMenuFunc);
-            });
+            if (menuItems) {
+                menuItems.forEach(item => {
+                    item.addEventListener("click", closeMenuFunc);
+                });
+            }
         });
     </script>
     <script>
