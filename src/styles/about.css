@@ -266,4 +266,49 @@ body.dark-mode .timeline-icon {
         font-size: 0.85rem;
         line-height: 1.4;
     }
+    .hero-image {
+        display: none;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column; /* Coloca os elementos em uma coluna */
+        align-items: center; /* Centraliza os itens horizontalmente */
+        justify-content: center; /* Centraliza os itens verticalmente */
+        text-align: center; /* Alinha o texto ao centro */
+        width: 100%; /* Garante que os elementos usem toda a largura */
+    }
+    .hero-content h1{
+        text-align: center;
+        align-items: center; /* Centraliza horizontalmente */
+        justify-content: center; /* Centraliza verticalmente */
+        flex-direction: column; /* Alinha verticalmente */
+        position: relative;
+        left: 100px;
+    }
+
+    .subtitle {
+        font-size: 1rem; /* Ajusta o subtítulo */
+        text-align: center;
+        position: relative;
+        left: 100px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center; /* Centraliza os botões */
+    }
+    .btn-primary, .btn-secondary {
+        padding: 10px 20px; /* Define o tamanho do botão */
+        font-size: 0.85rem; /* Ajusta o tamanho do texto do botão */
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        width: 140px; /* Define largura fixa para os botões */
+        display: flex;
+        align-items: center; /* Centraliza verticalmente */
+        justify-content: center; /* Centraliza horizontalmente */
+        position: relative;
+        left: 100px;
+    }
+
 }
