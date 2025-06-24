@@ -114,6 +114,12 @@
 }
 
 
+/* --- NOVO BREAKPOINT PARA NOTEBOOKS E TELAS MÉDIAS --- */
+@media screen and (max-width: 1400px) {
+    #cta .title {
+        font-size: 3.5rem; /* Título um pouco menor */
+    }
+}
 
 @media screen and (max-width: 1170px) {
     #home {

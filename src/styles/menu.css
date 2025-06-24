@@ -26,6 +26,28 @@
     box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
+    /* Aumentando levemente o tempo da transição para um efeito mais suave */
+    transition: transform 0.35s ease-in-out, box-shadow 0.35s ease-in-out;
+}
+
+/* --- MUDANÇA AQUI: EFEITO DE HOVER MUITO MAIS FORTE --- */
+.dish:hover {
+    /* Move 10px para cima E aumenta de tamanho */
+    transform: translateY(-10px) scale(1.03);
+    /* Sombra muito mais pronunciada para dar sensação de profundidade */
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+/* Sombra no modo escuro também mais intensa */
+body.dark-mode .dish:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.25);
+}
+
+
+/* O restante do arquivo continua igual */
+
+.dish-price a {
+    text-decoration: none;
 }
 
 .dish-heart {
@@ -44,40 +66,37 @@
 }
 
 .carrinho-image {
-    width: 200px; /* Ajuste a largura conforme necessário */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    width: 200px;
+    height: auto;
+    object-fit: contain;
 }
 .dish-description {
     color: #000000;
     text-align: center;
 }
 .gercom-imagem{
-    width: 200px; /* Ajuste a largura conforme necessário */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
-
-
+    width: 200px;
+    height: auto;
+    object-fit: contain;
 }
 .cybersecurity{
-    width: 430px; /* Ajuste a largura conforme necessário */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    width: 430px;
+    height: auto;
+    object-fit: contain;
     position: relative;
     left: 20px;
-
 }
 .ada {
-    width: 300px; /* Ajuste a largura conforme necessário */
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    width: 300px;
+    height: auto;
+    object-fit: contain;
     position: relative;
     right: 17px;
 }
 .dish-title {
-    color: #000000; /* Define a cor do título para preto */
-    text-align: center; /* Centraliza o texto */
-    margin-top: 10px; /* Espaço opcional para ajustar a posição vertical */
+    color: #000000;
+    text-align: center;
+    margin-top: 10px;
 }
 .dish-rate i {
     color: var(--color-primary-6);
@@ -88,6 +107,24 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-top: auto;
+}
+
+/* --- NOVO BREAKPOINT PARA NOTEBOOKS E TELAS MÉDIAS --- */
+@media screen and (max-width: 1400px) {
+    /* Passa os cards de 4 para 2 colunas para dar mais espaço */
+    .dish {
+        width: calc(50% - 12px);
+    }
+
+    /* Ajusta as imagens que tinham tamanho fixo para não quebrarem o layout */
+    .cybersecurity, .ada {
+        max-width: 90%; /* Garante que a imagem nunca seja maior que o card */
+        height: auto;
+        position: static; /* Reseta o posicionamento para centralizar corretamente */
+        left: auto;
+        right: auto;
+    }
 }
 
 @media screen and (max-width: 1170px) {
@@ -109,4 +146,4 @@
     #menu .section-subtitle {
         text-align: center;
     }
-} 
+}

@@ -11,12 +11,10 @@
     <title>Portfólio do David</title>
 </head>
 <body>
-    <!-- Overlay para o fundo escuro -->
     <div id="overlay"></div>
     
-    <!-- Menu lateral -->
     <div id="centralized-menu">
-        <button id="close-menu" style="background: none; border: none; font-size: 30px; color: white; cursor: pointer;">&times;</button>
+        <button id="close-menu" aria-label="Fechar menu">&times;</button>
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="#menu">Projetos em Andamento</a></li>
@@ -24,10 +22,10 @@
             <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </div>
+
     <header>
         <nav id="navbar">
             
-            <!-- Link para index.html envolvendo o logo e o texto -->
             <a href="index.html" id="logo-link">
                 <div id="logo-container">
                     <img src="src/images/teste.png" id="nav_logo" alt="Logo">
@@ -35,28 +33,29 @@
                 </div>
             </a>
             
-            <ul id="nav_list">
-                <li class="nav-item active">
-                    <a href="#home">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#menu">Projetos em Andamento</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#testimonials">Projetos Finalizados</a>
-                </li>
-            </ul>
+            <div class="nav-right">
+                <ul id="nav_list">
+                    <li class="nav-item active">
+                        <a href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#menu">Projetos em Andamento</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#testimonials">Projetos Finalizados</a>
+                    </li>
+                </ul>
     
-            <button class="btn-default">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-    
-            
-            <div class="theme-toggle">
-                <input type="checkbox" id="theme-switch" />
-                <label for="theme-switch" class="switch"></label>
-            </div>         
-        </nav>
+                <div class="theme-toggle">
+                    <input type="checkbox" id="theme-switch" aria-label="Alternar tema entre claro e escuro" />
+                    <label for="theme-switch" class="switch"></label>
+                </div>       
+                
+                <button id="mobile_btn" class="btn-default" aria-label="Abrir menu de navegação">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+            </nav>
     </header>
     
     <main id="content">
@@ -72,15 +71,15 @@
                 </p>
 
                 <div class="social-media-buttons">
-                    <a href="https://www.linkedin.com/in/t4vares/">
+                    <a href="https://www.linkedin.com/in/t4vares/" aria-label="Visitar meu perfil no LinkedIn" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-linkedin"></i>
                     </a>
     
-                    <a href="https://instagram.com/sayydaviid"">
+                    <a href="https://instagram.com/sayydaviid" aria-label="Visitar meu perfil no Instagram" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
     
-                    <a href="https://github.com/sayydaviid">
+                    <a href="https://github.com/sayydaviid" aria-label="Visitar meu perfil no GitHub" target="_blank" rel="noopener noreferrer">
                         <i class="fa-brands fa-github"></i>
                     </a>
                 </div>
@@ -96,8 +95,6 @@
 
             <div id="dishes">
                 <div class="dish">
-                    <div>
-                    </div>
                     <img src="src/images/carrinho.png" class="dish-image carrinho-image" alt="">
 
                     <h3 class="dish-title">
@@ -108,12 +105,9 @@
                         Sou professor de Robótica no Colégio Physics, onde ministro aulas práticas e teóricas sobre fundamentos de robótica, programação e automação, estimulando o aprendizado de tecnologia e inovação entre os alunos.
                     </span>
 
-                    <div>
-                    </div>
-
                     <div class="dish-price">
-                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7255593232238096384/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                            <button class="btn-default">
+                        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7255593232238096384/" target="_blank" rel="noopener noreferrer" aria-label="Ver detalhes do projeto Professor Maker">
+                            <button class="btn-default" aria-label="Ver detalhes do projeto Professor Maker">
                                 <i class="fa-solid fa-link"></i>
                             </button>
                         </a>
@@ -121,9 +115,6 @@
                 </div>
 
                 <div class="dish">
-                    <div>
-                    </div>
-
                     <img src="src/images/gercom.png" class="gercom-imagem" alt="">
 
                     <h3 class="dish-title">
@@ -134,15 +125,12 @@
                         Sou pesquisador do Grupo de Estudos em Redes de Computadores e Comunicação Multimídia (GERCOM), integrando a equipe de internet quântica. Minha atuação é focada no desenvolvimento e pesquisa de internet quântica, abrangendo a análise e desenvolvimento de simulações, criação de redes, e implementação
                     </span>
 
-                    <div>
-                    </div>
-
-                    <div>
-                    <a href="https://quantumnet.gercom.ufpa.br/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                        <button class="btn-default">
-                            <i class="fa-solid fa-link"></i>
-                        </button>
-                    </a>
+                    <div class="dish-price">
+                        <a href="https://quantumnet.gercom.ufpa.br/" target="_blank" rel="noopener noreferrer" aria-label="Ver detalhes do projeto de Computação Quântica">
+                            <button class="btn-default" aria-label="Ver detalhes do projeto de Computação Quântica">
+                                <i class="fa-solid fa-link"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -158,16 +146,15 @@
                     </span>
 
                     <div class="dish-price">
-                        <a href="https://www.linkedin.com/posts/t4vares_durante-esta-semana-organizei-o-curso-pentest-activity-7248372938750459904-gc2i?utm_source=share&utm_medium=member_desktop" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                        <button class="btn-default">
-                            <i class="fa-solid fa-link"></i>
-                        </button>
-                    </a>
+                        <a href="https://www.linkedin.com/posts/t4vares_durante-esta-semana-organizei-o-curso-pentest-activity-7248372938750459904-gc2i?utm_source=share&utm_medium=member_desktop" target="_blank" rel="noopener noreferrer" aria-label="Ver detalhes do curso de Cibersegurança">
+                            <button class="btn-default" aria-label="Ver detalhes do curso de Cibersegurança">
+                                <i class="fa-solid fa-link"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
                 <div class="dish">
-
                     <img src="src/images/adaaa.png" class="ada" alt="">
 
                     <h3 class="dish-title">
@@ -178,13 +165,12 @@
                         Atuo como parte da diretoria do Centro Acadêmico de Sistemas de Informação (CASI) da UFPA, onde sou responsável por auxiliar na organização de eventos, palestras, minicursos e atividades que visam a integração e o desenvolvimento acadêmico dos estudantes do curso.
                     </span>
 
-
                     <div class="dish-price">
-                        <a href="https://www.instagram.com/casi.ufpa/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
-                        <button class="btn-default">
-                            <i class="fa-solid fa-link"></i>
-                        </button>
-                    </a>
+                        <a href="https://www.instagram.com/casi.ufpa/" target="_blank" rel="noopener noreferrer" aria-label="Ver detalhes sobre o Centro Acadêmico de Sistemas de Informação">
+                            <button class="btn-default" aria-label="Ver detalhes sobre o Centro Acadêmico de Sistemas de Informação">
+                                <i class="fa-solid fa-link"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -199,7 +185,7 @@
                 </h3>
 
                 <div id="feedbacks">
-                    <a href="https://www.ctic.ufpa.br/index.php/em-destaque/315-participacao-da-equipe-de-ti-da-ufpa-na-76-reuniao-anual-da-sbpc" target="_blank" class="feedback-link"  style="text-decoration: none;">
+                    <a href="https://www.ctic.ufpa.br/index.php/em-destaque/315-participacao-da-equipe-de-ti-da-ufpa-na-76-reuniao-anual-da-sbpc" target="_blank" rel="noopener noreferrer" class="feedback-link">
                         <div class="feedback">
                             <img src="src/images/Imagem do WhatsApp de 2024-11-11 à(s) 21.12.48_450d9ef0.jpg" class="sbpc" alt="Professor Maker">
                             <div class="feedback-content">
@@ -209,7 +195,7 @@
                         </div>
                     </a>
                 
-                    <a href="https://quantumnet.gercom.ufpa.br/arthur-pimentel-e-david-tavares-destacam-inovacoes-em-seguranca-de-rede-na-erad-no2-e-eramia-regiao-norte-2/" target="_blank" class="feedback-link " style="text-decoration: none;">
+                    <a href="https://quantumnet.gercom.ufpa.br/arthur-pimentel-e-david-tavares-destacam-inovacoes-em-seguranca-de-rede-na-erad-no2-e-eramia-regiao-norte-2/" target="_blank" rel="noopener noreferrer" class="feedback-link">
                         <div class="feedback">
                             <img src="src/images/image.png" class="feedback-avatar" alt="ERAD 2023">
                             <div class="feedback-content">
@@ -219,6 +205,7 @@
                         </div>
                     </a>
                 </div>
+            </div>
         </section>
     </main>
 
@@ -231,122 +218,20 @@
             </span>
 
             <div class="social-media-buttons">
-                <a href="https://www.linkedin.com/in/t4vares/">
+                <a href="https://www.linkedin.com/in/t4vares/" aria-label="Visitar meu perfil no LinkedIn" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
 
-                <a href="https://instagram.com/sayydaviid"">
+                <a href="https://instagram.com/sayydaviid" aria-label="Visitar meu perfil no Instagram" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="https://github.com/sayydaviid">
+                <a href="https://github.com/sayydaviid" aria-label="Visitar meu perfil no GitHub" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github"></i>
                 </a>
             </div>
         </div>
     </footer>
     <script src="src/javascript/script.js"></script>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const title = document.querySelector("#cta .title");
-            
-            // Tempo após o qual o cursor desaparecerá (ajuste o valor conforme necessário)
-            const cursorDisappearTime = 4000; // 4 segundos após o início da animação
-    
-            setTimeout(() => {
-                title.style.borderRight = "none"; // Remove a barra
-            }, cursorDisappearTime);
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const menuBtn = document.querySelector(".btn-default");
-            const overlay = document.getElementById("overlay");
-            const centralizedMenu = document.getElementById("centralized-menu");
-            const closeMenu = document.getElementById("close-menu");
-            const content = document.querySelector("main");
-            const header = document.querySelector("header");
-            const menuItems = centralizedMenu.querySelectorAll("a");
-        
-            function openMenu() {
-                overlay.style.display = "block";
-                centralizedMenu.style.display = "flex";
-                centralizedMenu.style.opacity = "1"; // Faz o menu aparecer
-                content.classList.add("blur");
-                header.classList.add("blur");
-            }
-        
-            function closeMenuFunc() {
-                overlay.style.display = "none";
-                centralizedMenu.style.display = "none";
-                centralizedMenu.style.opacity = "0"; // Faz o menu desaparecer
-                content.classList.remove("blur");
-                header.classList.remove("blur");
-            }
-        
-            // Abrir o menu ao clicar no botão
-            if (menuBtn) {
-                menuBtn.addEventListener("click", openMenu);
-            }
-        
-            // Fechar o menu ao clicar no overlay ou no botão de fechar
-            if (overlay) {
-                overlay.addEventListener("click", closeMenuFunc);
-            }
-        
-            if (closeMenu) {
-                closeMenu.addEventListener("click", closeMenuFunc);
-            }
-        
-            // Fechar o menu automaticamente ao clicar em qualquer item
-            if (menuItems) {
-                menuItems.forEach(item => {
-                    item.addEventListener("click", closeMenuFunc);
-                });
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const themeToggleButton = document.getElementById("theme-toggle");
-            const icon = themeToggleButton.querySelector("i");
-        
-            themeToggleButton.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-        
-                // Alternar o ícone entre lua e sol
-                if (document.body.classList.contains("dark-mode")) {
-                    icon.classList.replace("fa-moon", "fa-sun");
-                } else {
-                    icon.classList.replace("fa-sun", "fa-moon");
-                }
-            });
-        });        
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const themeToggleButton = document.querySelector(".switch");
-            const body = document.body;
-        
-            // Carrega a preferência do tema do localStorage
-            const darkModePreference = localStorage.getItem("darkMode");
-        
-            if (darkModePreference === "enabled") {
-                body.classList.add("dark-mode");
-            }
-        
-            // Alterna o modo e salva a preferência no localStorage
-            themeToggleButton.addEventListener("click", () => {
-                body.classList.toggle("dark-mode");
-        
-                if (body.classList.contains("dark-mode")) {
-                    localStorage.setItem("darkMode", "enabled");
-                } else {
-                    localStorage.setItem("darkMode", "disabled");
-                }
-            });
-        });     
-    </script>
 </body>
 </html>

@@ -106,6 +106,24 @@ body.dark-mode #testimonial_chef {
     }
 }
 
+/* --- NOVO BREAKPOINT PARA NOTEBOOKS E TELAS MÉDIAS --- */
+@media screen and (max-width: 1400px) {
+    #testimonials {
+        /* Centraliza o conteúdo, já que a imagem não estará mais lá */
+        justify-content: center;
+    }
+
+    /* Esconde a imagem do átomo em telas menores para focar no conteúdo */
+    #testimonial_chef {
+        display: none;
+    }
+
+    /* Ocupa uma largura maior para melhor aproveitamento do espaço */
+    #testimonials_content {
+        width: 80%;
+    }
+}
+
 @media screen and (max-width: 600px) {
     #testimonials .section-subtitle {
         font-size: 2rem;

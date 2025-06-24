@@ -12,9 +12,8 @@ header {
 #navbar {
     width: 100%;
     display: flex;
-    align-items: center; /* Centraliza verticalmente os itens */
+    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap; /* Permite que os itens se ajustem em telas menores */
 }
 
 #logo-container {
@@ -32,29 +31,20 @@ header {
     font-size: 18px;
     font-weight: bold;
     color: var(--color-primary-6);
-    text-decoration: none; /* Remove a linha embaixo */
+    text-decoration: none;
 }
 
 #logo-link {
-    text-decoration: none; /* Remove o sublinhado do link */
-    color: inherit; /* Mantém a cor definida no texto */
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Estilo para "Port" no modo claro */
-.port {
-    color: #9434e4; /* Roxo no modo claro */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
-/* Estilo para "fólio" (permanece amarelo) */
-.folio {
-    color: var(--color-primary-6); /* Amarelo em ambos os modos */
-}
-
-/* Alterações para o modo escuro */
-body.dark-mode .port {
-    color: #ffffff; /* Branco no modo escuro */
-}
-/* Ajuste para telas grandes */
 #nav_list {
     display: flex;
     list-style: none;
@@ -71,16 +61,11 @@ body.dark-mode .port {
     color: var(--color-neutral-1);
     border-bottom: 3px solid var(--color-primary-4);
 }
-/* Botão mobile oculto em telas grandes */
-#mobile_btn {
-    display: none;
-}
 
 #mobile_menu {
     display: none;
 }
 
-/* Estilo para o overlay */
 #overlay {
     position: fixed;
     top: 0;
@@ -90,10 +75,10 @@ body.dark-mode .port {
     background-color: rgba(0, 0, 0, 0.7);
     display: none;
     z-index: 10;
-    backdrop-filter: blur(8px); /* Aumenta o desfoque */
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 
-/* Estilo para o menu centralizado */
 #centralized-menu {
     position: fixed;
     top: 50%;
@@ -104,6 +89,8 @@ body.dark-mode .port {
     display: none;
     z-index: 11;
     font-family: Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 #centralized-menu ul {
@@ -124,65 +111,52 @@ body.dark-mode .port {
     transition: color 0.3s ease;
 }
 
-/* Efeito de destaque ao passar o mouse */
 #centralized-menu ul li a:hover {
-    color: var(--color-primary-6); /* Ajuste a cor de destaque */
-    transform: scale(1.1); /* Aumenta o tamanho do texto levemente */
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
-}
-/* Estilo para o hover no modo escuro */
-body.dark-mode #centralized-menu ul li a:hover {
-     color: var(--color-primary-6); /* Ajuste a cor de destaque */
-    transform: scale(1.1); /* Aumenta o tamanho do texto levemente */
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+    color: var(--color-primary-6);
+    transform: scale(1.1);
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Botão de fechar no menu centralizado */
 #close-menu {
     position: absolute;
     top: -10px;
     right: -10px;
-    font-size: 30px;
     background: none;
     border: none;
+    font-size: 30px;
     color: white;
     cursor: pointer;
-}
-/* Estilo para o hover no botão de fechar */
-#close-menu:hover {
-    color: var(--color-primary-6); /* Cor em destaque ao passar o mouse */
-    transform: scale(1.2); /* Aumenta ligeiramente o tamanho do "X" */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Efeito de desfoque no conteúdo */
+#close-menu:hover {
+    color: var(--color-primary-6);
+    transform: scale(1.2);
+}
+
 .blur {
     filter: blur(5px);
 }
-/* Container do toggle */
+
 .theme-toggle {
-    position: fixed;
-    top: 34px;
-    right: 220px;
-    z-index: 15;
+    position: relative;
 }
 
-/* Estilo para o input checkbox oculto */
 #theme-switch {
     display: none;
 }
 
-/* Estilo para o switch */
 .switch {
     width: 50px;
     height: 25px;
-    background-color: #ccc; /* Background inicial no modo claro */
+    background-color: #ccc;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: inline-block;
+    position: relative;
 }
 
-/* Círculo deslizante */
 .switch::before {
     content: "";
     position: absolute;
@@ -196,25 +170,18 @@ body.dark-mode #centralized-menu ul li a:hover {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Cor e posição para o modo Light */
-body:not(.dark-mode) .switch {
-    background-color: #ccc;
-}
-
-body:not(.dark-mode) .switch::before {
-    transform: translateX(0); /* Posição inicial no modo claro */
-}
-
-/* Cor e posição para o modo Dark */
 body.dark-mode .switch {
-    background-color: #4B0082; /* Roxo para o modo escuro */
+    background-color: #4B0082;
 }
 
 body.dark-mode .switch::before {
-    transform: translateX(25px); /* Move o círculo para a direita no modo escuro */
+    transform: translateX(25px);
 }
 
-/* Estilos gerais para o modo escuro */
+/* Estilos do modo escuro */
+body.dark-mode .port {
+    color: #ffffff;
+}
 body.dark-mode {
     --color-primary-1: #1d1d1d;
     --color-primary-2: #252525;
@@ -223,140 +190,57 @@ body.dark-mode {
     background-color: var(--color-primary-1);
     color: var(--color-neutral-1);
 }
-
 body.dark-mode header,
 body.dark-mode footer {
     background-color: var(--color-primary-2);
 }
-
 body.dark-mode .section-title {
     color: var(--color-neutral-1);
 }
-
 body.dark-mode .nav-item a {
     color: var(--color-neutral-1);
 }
-
 body.dark-mode .nav-item.active a {
     color: var(--color-primary-4);
     border-bottom: 3px solid var(--color-purple);
 }
-
 body.dark-mode .shape {
     background-color: var(--color-primary-6);
 }
 body.dark-mode .btn-default,
 body.dark-mode .social-media-buttons a {
     background-color: #4B0082;
-    color: #ffffff;; /* Cor do ícone ou texto para contraste */
+    color: #ffffff;
 }
-
-/* Estilos do botão no modo escuro */
-body.dark-mode .btn-default {
-    background-color: #4B0082; /* Lilás escuro */
-    color: #ffffff; /* Barras brancas inicialmente */
-}
-
 body.dark-mode .btn-default i {
-    color: #ffffff; /* Cor inicial das barras para branco */
+    color: #ffffff;
 }
-
-/* Efeito hover no modo escuro */
 body.dark-mode .btn-default:hover {
-    background-color: #ffffff; /* Cor de fundo ao passar o mouse */
+    background-color: #ffffff;
 }
-
 body.dark-mode .btn-default:hover i {
-    color: #000000; /* Altera a cor das barras para preto ao passar o mouse */
+    color: #000000;
 }
 
+/* Regra para a cor base do link no modo escuro */
 body.dark-mode #centralized-menu ul li a {
-    color: var(--color-neutral-1);
+    color: var(--color-neutral-1); /* Cor branca */
 }
+
+/* --- NOVA REGRA ADICIONADA PARA RESOLVER O CONFLITO --- */
+/* Regra específica para o HOVER no MODO ESCURO */
+body.dark-mode #centralized-menu ul li a:hover {
+    color: var(--color-primary-6); /* Força a cor amarela no hover */
+}
+
 
 body.dark-mode #overlay {
-    background-color: rgba(0, 0, 0, 0.9); /* Fundo mais escuro para o overlay */
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
-
-
-
-/* Ajuste para o botão de dark mode em telas menores e com zoom */
-@media screen and (max-width: 1200px) {
-    .theme-toggle  {
-        top: 28px;
-        right: 10px;
-        transform: scale(1.1); /* Ajusta o tamanho para melhor visibilidade */
-
-    
-    }
-    .btn-default, body.dark-mode .btn-default {
-        right: 90px !important; /* Ajusta a posição do botão */
-        width: 40px !important; /* Ajusta o tamanho do botão e aplica !important */
-        height: 40px !important;
-        padding: 8px 12px !important;
-    }
-}
-
-
-@media screen and (max-width: 900px) {
-    .theme-toggle {
-        top: 28px;
-
-    }
-    .btn-default, body.dark-mode .btn-default {
-        right: 90px !important; /* Ajusta a posição do botão */
-        width: 40px !important; /* Ajusta o tamanho do botão e aplica !important */
-        height: 40px !important;
-        padding: 8px 12px !important;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    #nav_list, #logo-text{ 
-        width: 50%;
-        height: auto;
-        align-items: center; /* Centraliza verticalmente os itens */
-        right: 100px;
-
-    }
-    #nav_logo {
-        width: 30px;
-    }
-
-    .theme-toggle {
-        top: 33px;
-        right: 101px;
-    }
-    .btn-default, body.dark-mode .btn-default {
-        right: 90px !important; /* Ajusta a posição do botão */
-        width: 35px !important; /* Ajusta o tamanho do botão e aplica !important */
-        height: 40px !important;
-        padding: 8px 12px !important;
-    }
-}
-@media screen and (max-width: 600px) {
-    .theme-toggle {
-        top: 15px;
-        right: 50px; /* Mais próximo da margem para telas bem pequenas */
-        transform: scale(1);
-    }
-}
-
-@media screen and (max-width: 500px) {
-    /* Esconde alguns elementos no cabeçalho e ajusta a posição do botão */
-    #nav_list {
+/* Regra de responsividade simplificada */
+@media screen and (max-width: 1170px) {
+    #nav_list { 
         display: none;
-    }
-
-    #mobile_btn {
-        display: block;
-        position: absolute;
-        right: 20px;
-    }
-
-    .theme-toggle {
-        top: 20px;
-        right: 100px;
     }
 }
