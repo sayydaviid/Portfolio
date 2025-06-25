@@ -30,7 +30,6 @@ header {
 #logo-text {
     font-size: 18px;
     font-weight: bold;
-    color: var(--color-primary-6);
     text-decoration: none;
 }
 
@@ -39,27 +38,68 @@ header {
     color: inherit;
 }
 
-.nav-right {
+.port {
+    color: var(--color-primary-6);
+}
+.folio {
+    color: #9434e4;
+}
+body.dark-mode .port {
+    color: #ffffff;
+}
+body.dark-mode .folio {
+    color: var(--color-primary-6);
+}
+
+.nav-controls {
     display: flex;
     align-items: center;
     gap: 24px;
+}
+
+/* Container da lista agora é a referência de posição */
+.nav-list-container {
+    position: relative;
 }
 
 #nav_list {
     display: flex;
     list-style: none;
     gap: 48px;
+    /* position: relative; foi removido daqui */
+}
+
+.nav-underline {
+    position: absolute;
+    bottom: -5px;
+    height: 3px;
+    background-color: var(--color-primary-4);
+    border-radius: 3px;
+    transition: left 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+body.dark-mode .nav-underline {
+    background-color: var(--color-purple);
 }
 
 .nav-item a {
     text-decoration: none;
     color: #000000ad;
     font-weight: 600;
+    padding-bottom: 5px;
+    transition: color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .nav-item.active a {
-    color: var(--color-neutral-1);
-    border-bottom: 3px solid var(--color-primary-4);
+    color: #9434e4;
+}
+
+body.dark-mode .nav-item a {
+    color: #ffffff;
+}
+
+body.dark-mode .nav-item.active a {
+    color: var(--color-primary-4);
 }
 
 #mobile_menu {
@@ -157,8 +197,7 @@ header {
     position: relative;
 }
 
-.switch::before {
-    content: "";
+.switch-toggle {
     position: absolute;
     width: 21px;
     height: 21px;
@@ -168,20 +207,40 @@ header {
     left: 2px;
     transition: transform 0.3s ease;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-toggle i {
+    font-size: 12px;
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.switch-toggle .fa-sun {
+    color: #f39c12;
+    opacity: 1;
+}
+.switch-toggle .fa-moon {
+    color: #5dade2;
+    opacity: 0;
 }
 
 body.dark-mode .switch {
     background-color: #4B0082;
 }
 
-body.dark-mode .switch::before {
+body.dark-mode .switch-toggle {
     transform: translateX(25px);
 }
-
-/* Estilos do modo escuro */
-body.dark-mode .port {
-    color: #ffffff;
+body.dark-mode .switch-toggle .fa-sun {
+    opacity: 0;
 }
+body.dark-mode .switch-toggle .fa-moon {
+    opacity: 1;
+}
+
 body.dark-mode {
     --color-primary-1: #1d1d1d;
     --color-primary-2: #252525;
@@ -197,16 +256,7 @@ body.dark-mode footer {
 body.dark-mode .section-title {
     color: var(--color-neutral-1);
 }
-body.dark-mode .nav-item a {
-    color: var(--color-neutral-1);
-}
-body.dark-mode .nav-item.active a {
-    color: var(--color-primary-4);
-    border-bottom: 3px solid var(--color-purple);
-}
-body.dark-mode .shape {
-    background-color: var(--color-primary-6);
-}
+
 body.dark-mode .btn-default,
 body.dark-mode .social-media-buttons a {
     background-color: #4B0082;
@@ -222,25 +272,21 @@ body.dark-mode .btn-default:hover i {
     color: #000000;
 }
 
-/* Regra para a cor base do link no modo escuro */
 body.dark-mode #centralized-menu ul li a {
-    color: var(--color-neutral-1); /* Cor branca */
+    color: var(--color-neutral-1);
 }
 
-/* --- NOVA REGRA ADICIONADA PARA RESOLVER O CONFLITO --- */
-/* Regra específica para o HOVER no MODO ESCURO */
 body.dark-mode #centralized-menu ul li a:hover {
-    color: var(--color-primary-6); /* Força a cor amarela no hover */
+    color: var(--color-primary-6);
 }
-
 
 body.dark-mode #overlay {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Regra de responsividade simplificada */
+/* Agora a responsividade esconde o container inteiro */
 @media screen and (max-width: 1170px) {
-    #nav_list { 
+    .nav-list-container { 
         display: none;
     }
 }

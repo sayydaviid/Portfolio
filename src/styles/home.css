@@ -103,7 +103,7 @@
 }
 
 .shape {
-    background-color: var(--color-primary-2);
+    background-color: var(--color-neutral-1);
     width: 22%; /* Aumenta a largura para cobrir mais da área */
     height: 41%; /* Reduz a altura para um ajuste mais suave */
     position: absolute;
@@ -113,6 +113,9 @@
     z-index: 1;
 }
 
+body.dark-mode .shape {
+    background-color: var(--color-primary-6);
+}
 
 /* --- NOVO BREAKPOINT PARA NOTEBOOKS E TELAS MÉDIAS --- */
 @media screen and (max-width: 1400px) {
