@@ -6,28 +6,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="src/styles/styles.css">
     <link rel="stylesheet" href="src/styles/about.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <title>Sobre do David</title>
+    <title>Sobre - David Tavares</title>
 </head>
 <body class="fade-in">
-    <!-- Overlay para o fundo escuro -->
     <div id="overlay"></div>
     
-    <!-- Menu lateral -->
     <div id="centralized-menu">
-        <button id="close-menu" style="background: none; border: none; font-size: 30px; color: white; cursor: pointer;">&times;</button>
+        <button id="close-menu" aria-label="Fechar menu">&times;</button>
         <ul>
-          <li><a href="index.html">Início</a></li> <!-- Ajuste aqui para redirecionar para index.html -->
-          <li><a href="index.html#menu">Projetos em andamento</a></li>
-          <li><a href="index.html#testimonials">Projetos finalizados</a></li>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#menu">Projetos em Andamento</a></li>
+          <li><a href="index.html#testimonials">Projetos Finalizados</a></li>
           <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </div>
+
     <header>
         <nav id="navbar">
-            
-            <!-- Link para index.html envolvendo o logo e o texto -->
             <a href="index.html" id="logo-link">
                 <div id="logo-container">
                     <img src="src/images/teste.png" id="nav_logo" alt="Logo">
@@ -35,17 +33,24 @@
                 </div>
             </a>
     
-            <button class="btn-default">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-    
-            
-            <div class="theme-toggle">
-                <input type="checkbox" id="theme-switch" />
-                <label for="theme-switch" class="switch"></label>
-            </div>         
+            <div class="nav-controls">
+                <div class="theme-toggle">
+                    <input type="checkbox" id="theme-switch" aria-label="Alternar tema entre claro e escuro" />
+                    <label for="theme-switch" class="switch">
+                        <div class="switch-toggle">
+                            <i class="fa-solid fa-sun"></i>
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                    </label>
+                </div>       
+                
+                <button id="mobile_btn" class="btn-default" aria-label="Abrir menu de navegação">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </nav>
     </header>
+
     <main id="content">
       <section id="hero" class="hero-section">
         <div class="hero-content">
@@ -60,234 +65,76 @@
         <div class="hero-image">
             <img src="src/images/foto2.jpg" alt="David Tavares">
         </div>
-    </section>
+      </section>
 
-    <section id="about" class="about-section">
-      <h2>Sobre mim</h2>
-      <p>
-        Estudante de Front-end desenvolvendo sua primeira experiência em tecnologias como React.js, JavaScript, e mais. Atualmente cursando Sistemas de Informação na Universidade Federal do Pará, com interesse em desenvolvimento e metodologias ágeis.      </p>
-  </section>
-        <section id="timeline">
-          <h3 class="section-subtitle">Linha do Tempo</h3>
-      
-          <div class="timeline">
-              <div class="timeline-event">
-                  <div class="timeline-icon"><i class="fa-solid fa-child"></i></div>
-                  <div class="timeline-content">
-                      <h4>2004 - Nascimento</h4>
-                      <p>Nasci em Belém, Pará.</p>
-                  </div>
-              </div>
-      
-              <div class="timeline-event">
-                  <div class="timeline-icon"><i class="fa-solid fa-school"></i></div>
-                  <div class="timeline-content">
-                      <h4>2022 - Conclusão do Ensino Médio</h4>
-                      <p>Finalizei o ensino médio na Escola Estadual "Dr. Mário Chermont".</p>
-                  </div>
-              </div>
-      
-              <div class="timeline-event">
-                  <div class="timeline-icon"><i class="fa-solid fa-university"></i></div>
-                  <div class="timeline-content">
-                      <h4>2023 - Ingresso na UFPA</h4>
-                      <p>Iniciei a graduação em Sistemas de Informação na Universidade Federal do Pará (UFPA).</p>
-                  </div>
-              </div>
-      
-              <div class="timeline-event">
-                  <div class="timeline-icon"><i class="fa-solid fa-network-wired"></i></div>
-                  <div class="timeline-content">
-                      <h4>2023 - Início no Projeto GERCOM</h4>
-                      <p>Comecei a trabalhar no Grupo de Estudos em Redes de Computadores e Comunicação Multimídia (GERCOM).</p>
-                  </div>
-                  
-                  
-              </div>
-              <div class="timeline-event">
-                <div class="timeline-icon"><i class="fa-solid fa-user-tie"></i></div>
+      <section id="about" class="about-section">
+        <h2>Sobre mim</h2>
+        <p>
+          Estudante de Front-end desenvolvendo sua primeira experiência em tecnologias como React.js, JavaScript, e mais. Atualmente cursando Sistemas de Informação na Universidade Federal do Pará, com interesse em desenvolvimento e metodologias ágeis.      
+        </p>
+      </section>
+
+      <section id="timeline">
+        <h3 class="section-subtitle">Linha do Tempo</h3>
+        <div class="timeline">
+            <div class="timeline-event">
+                <div class="timeline-icon"><i class="fa-solid fa-child"></i></div>
                 <div class="timeline-content">
-                    <h4>2024 - Vice Presidente de Sistemas de Informação </h4>
-                    <p>Assumi a posição de Vice-Presidente do Centro Acadêmico de Sistemas de Informação na Universidade Federal do Pará (UFPA), contribuindo para fortalecer a representatividade e o desenvolvimento acadêmico dos estudantes do curso.</p>
+                    <h4>2004 - Nascimento</h4>
+                    <p>Nasci em Belém, Pará.</p>
                 </div>
             </div>
-          </div>
+            <div class="timeline-event">
+                <div class="timeline-icon"><i class="fa-solid fa-school"></i></div>
+                <div class="timeline-content">
+                    <h4>2022 - Conclusão do Ensino Médio</h4>
+                    <p>Finalizei o ensino médio na Escola Estadual "Dr. Mário Chermont".</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-icon"><i class="fa-solid fa-university"></i></div>
+                <div class="timeline-content">
+                    <h4>2023 - Ingresso na UFPA</h4>
+                    <p>Iniciei a graduação em Sistemas de Informação na Universidade Federal do Pará (UFPA).</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <div class="timeline-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <div class="timeline-content">
+                    <h4>2023 - Início no Projeto GERCOM</h4>
+                    <p>Comecei a trabalhar no Grupo de Estudos em Redes de Computadores e Comunicação Multimídia (GERCOM).</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-icon"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="timeline-content">
+                  <h4>2024 - Vice Presidente de Sistemas de Informação </h4>
+                  <p>Assumi a posição de Vice-Presidente do Centro Acadêmico de Sistemas de Informação na Universidade Federal do Pará (UFPA), contribuindo para fortalecer a representatividade e o desenvolvimento acadêmico dos estudantes do curso.</p>
+              </div>
+            </div>
+        </div>
       </section>
     </main>
 
     <footer>
         <img src="src/images/wave.svg" alt="">
-
         <div id="footer_items">
             <span id="copyright">
-                &copy 2024 David Tavares
+                &copy; 2024 David Tavares
             </span>
-
             <div class="social-media-buttons">
-                <a href="https://www.linkedin.com/in/t4vares/">
+                <a href="https://www.linkedin.com/in/t4vares/" aria-label="Visitar meu perfil no LinkedIn" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin"></i>
                 </a>
-
-                <a href="https://instagram.com/sayydaviid"">
+                <a href="https://instagram.com/sayydaviid" aria-label="Visitar meu perfil no Instagram" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
-
-                <a href="https://github.com/sayydaviid">
+                <a href="https://github.com/sayydaviid" aria-label="Visitar meu perfil no GitHub" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github"></i>
                 </a>
             </div>
         </div>
     </footer>
-    <script src="src/javascript/script.js"></script>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const title = document.querySelector("#cta .title");
-            
-            // Tempo após o qual o cursor desaparecerá (ajuste o valor conforme necessário)
-            const cursorDisappearTime = 4000; // 4 segundos após o início da animação
-    
-            setTimeout(() => {
-                title.style.borderRight = "none"; // Remove a barra
-            }, cursorDisappearTime);
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const menuBtn = document.querySelector(".btn-default");
-            const overlay = document.getElementById("overlay");
-            const centralizedMenu = document.getElementById("centralized-menu");
-            const closeMenu = document.getElementById("close-menu");
-            const content = document.querySelector("main");
-            const header = document.querySelector("header");
-            const menuItems = centralizedMenu.querySelectorAll("a");
-        
-            function openMenu() {
-                overlay.style.display = "block";
-                centralizedMenu.style.display = "flex";
-                centralizedMenu.style.opacity = "1"; // Faz o menu aparecer
-                content.classList.add("blur");
-                header.classList.add("blur");
-            }
-        
-            function closeMenuFunc() {
-                overlay.style.display = "none";
-                centralizedMenu.style.display = "none";
-                centralizedMenu.style.opacity = "0"; // Faz o menu desaparecer
-                content.classList.remove("blur");
-                header.classList.remove("blur");
-            }
-        
-            // Abrir o menu ao clicar no botão
-            if (menuBtn) {
-                menuBtn.addEventListener("click", openMenu);
-            }
-        
-            // Fechar o menu ao clicar no overlay ou no botão de fechar
-            if (overlay) {
-                overlay.addEventListener("click", closeMenuFunc);
-            }
-        
-            if (closeMenu) {
-                closeMenu.addEventListener("click", closeMenuFunc);
-            }
-        
-            // Fechar o menu automaticamente ao clicar em qualquer item
-            if (menuItems) {
-                menuItems.forEach(item => {
-                    item.addEventListener("click", closeMenuFunc);
-                });
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const themeToggleButton = document.getElementById("theme-toggle");
-            const icon = themeToggleButton.querySelector("i");
-        
-            themeToggleButton.addEventListener("click", () => {
-                document.body.classList.toggle("dark-mode");
-        
-                // Alternar o ícone entre lua e sol
-                if (document.body.classList.contains("dark-mode")) {
-                    icon.classList.replace("fa-moon", "fa-sun");
-                } else {
-                    icon.classList.replace("fa-sun", "fa-moon");
-                }
-            });
-        });        
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const themeToggleButton = document.querySelector(".switch");
-            const body = document.body;
-        
-            // Carrega a preferência do tema do localStorage
-            const darkModePreference = localStorage.getItem("darkMode");
-        
-            if (darkModePreference === "enabled") {
-                body.classList.add("dark-mode");
-            }
-        
-            // Alterna o modo e salva a preferência no localStorage
-            themeToggleButton.addEventListener("click", () => {
-                body.classList.toggle("dark-mode");
-        
-                if (body.classList.contains("dark-mode")) {
-                    localStorage.setItem("darkMode", "enabled");
-                } else {
-                    localStorage.setItem("darkMode", "disabled");
-                }
-            });
-        });     
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          const timelineEvents = document.querySelectorAll(".timeline-event");
-  
-          function revealEvents() {
-              timelineEvents.forEach(event => {
-                  const eventPosition = event.getBoundingClientRect().top;
-                  const windowHeight = window.innerHeight;
-                  if (eventPosition < windowHeight - 50) {
-                      event.classList.add("active");
-                  }
-              });
-          }
-  
-          window.addEventListener("scroll", revealEvents);
-          revealEvents();
-      });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const timelineEvents = document.querySelectorAll(".timeline-event");
-  
-      function revealEventsOnScroll() {
-          const windowHeight = window.innerHeight;
-  
-          timelineEvents.forEach((event) => {
-              const eventPosition = event.getBoundingClientRect().top;
-  
-              // Verifica se o elemento está dentro da área visível da janela
-              if (eventPosition < windowHeight - 100) {
-                  event.classList.add("active");
-              }
-          });
-      }
-  
-      // Detecta o scroll e chama a função
-      window.addEventListener("scroll", revealEventsOnScroll);
-  
-      // Chama uma vez para verificar no carregamento da página
-      revealEventsOnScroll();
-  });
-</script>
-<script>
-  // Espera o carregamento completo da página
-  window.addEventListener("load", function() {
-      document.body.classList.add("show");
-  });
-</script>
-</body>
+
+    <script src="src/javascript/script.js"></script> <script src="src/javascript/about.js"></script> </body>
 </html>

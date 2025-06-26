@@ -11,7 +11,6 @@ $(document).ready(function() {
             mobileBtn.trigger('click');
         }
     }
-
     mobileBtn.on('click', function() {
         const isOpening = $(this).find('i').hasClass('fa-bars');
         $(this).find('i').toggleClass('fa-bars fa-x');
@@ -28,7 +27,6 @@ $(document).ready(function() {
             header.removeClass('blur');
         }
     });
-
     overlay.on('click', closeMenu);
     $('#centralized-menu a').on('click', closeMenu);
     $('#close-menu').on('click', closeMenu);
@@ -53,7 +51,6 @@ $(document).ready(function() {
             }
         }
     }
-
     navItemsWithLinks.on('click', function() {
         clickAction = true;
         clearTimeout(scrollTimeout);
@@ -64,7 +61,6 @@ $(document).ready(function() {
             clickAction = false;
         }, 500);
     });
-
     $(window).on('scroll', function() {
         if (clickAction) {
             return;
@@ -105,6 +101,55 @@ $(document).ready(function() {
         body.toggleClass("dark-mode");
         localStorage.setItem("darkMode", body.hasClass("dark-mode") ? "enabled" : "disabled");
     });
+    
+    // --- LÓGICA DE ARRASTAR PARA ROLAR (VERSÃO FINALÍSSIMA) ---
+    const slider = document.querySelector('#feedbacks');
+    if (slider) {
+        let isDown = false;
+        let startY;
+        let scrollTop;
+
+        const handleMove = (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const y = e.pageY || e.touches[0].pageY;
+            const walk = (y - startY) * 2;
+            slider.scrollTop = scrollTop - walk;
+        };
+
+        const handleUp = () => {
+            isDown = false;
+            slider.classList.remove('active-drag');
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('mouseup', handleUp);
+            window.removeEventListener('touchmove', handleMove);
+            window.removeEventListener('touchend', handleUp);
+        };
+
+        const handleDown = (e) => {
+            isDown = true;
+            slider.classList.add('active-drag');
+            startY = (e.pageY || e.touches[0].pageY);
+            scrollTop = slider.scrollTop;
+            window.addEventListener('mousemove', handleMove);
+            window.addEventListener('mouseup', handleUp);
+            window.addEventListener('touchmove', handleMove);
+            window.addEventListener('touchend', handleUp);
+        };
+        
+        // --- ADIÇÃO PARA CORRIGIR O BUG DO LINK ---
+        // Impede o comportamento padrão de "arrastar link" do navegador.
+        const linksInsideSlider = slider.querySelectorAll('a');
+        linksInsideSlider.forEach(link => {
+            link.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
+        });
+        // --- FIM DA ADIÇÃO ---
+
+        slider.addEventListener('mousedown', handleDown);
+        slider.addEventListener('touchstart', handleDown, { passive: true });
+    }
 
     // --- ANIMAÇÕES COM SCROLLREVEAL ---
     ScrollReveal().reveal('#cta, .dish, #testimonial_chef, .feedback', {
@@ -112,7 +157,6 @@ $(document).ready(function() {
         distance: '30px',
         duration: 1000,
         interval: 150
-        // A OPÇÃO "reset: true" FOI REMOVIDA DAQUI
     });
 
     // --- EFEITO DE DIGITAÇÃO ---
@@ -128,5 +172,4 @@ $(document).ready(function() {
         const currentActiveLink = $('#nav_list .nav-item.active a');
         positionUnderline(currentActiveLink);
     }).trigger('resize');
-
 });
