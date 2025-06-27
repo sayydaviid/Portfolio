@@ -13,49 +13,40 @@
 }
 
 #testimonials .section-subtitle {
+    position: sticky;
     font-size: 3rem;
+    margin-bottom: 30px;
 }
 
 #testimonials_content {
     width: 50%;
 }
 
-/* --- MUDANÇA: Layout e Cursor Corrigidos --- */
-#feedbacks {
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-
-    /* Altura calculada para caber 2 cards de 150px + 1 espaçamento de 20px */
-    height: 320px;
-    
-    /* Esconde o conteúdo que transborda, sem barra de rolagem */
-    overflow: hidden;
-    
-    /* Cursor indica que a área é "agarrável" */
-    cursor: grab;
-    user-select: none; /* Impede a seleção de texto durante o arraste */
+/* Container que envolve o carrossel, dando a ele uma altura fixa e estável */
+.slider-container {
+    height: auto; /* Ajusta altura dinamicamente */
+    overflow: visible; /* Garante a visibilidade dos 5 cards */
 }
 
-/* Quando o usuário está clicando e arrastando */
-#feedbacks.active-drag {
+#feedbacks {
+    cursor: grab;
+}
+
+#feedbacks:active {
     cursor: grabbing;
+}
+
+/* A biblioteca cria um container interno que podemos estilizar */
+#feedbacks .tns-inner {
+    padding: 0 10px;
 }
 
 .feedback-link {
     display: block;
     text-decoration: none;
     color: inherit;
-    /* Adiciona margem abaixo de cada card, exceto o último */
-    margin-bottom: 20px;
-    flex-shrink: 0; /* Impede que os cards encolham */
+    padding: 10px 0; /* Espaçamento vertical entre os cards */
 }
-
-.feedback-link:last-child {
-    margin-bottom: 0;
-}
-
-/* --- FIM DAS MUDANÇAS --- */
 
 .feedback {
     display: flex;
@@ -66,6 +57,7 @@
     border-radius: 12px;
     box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 10px; /* Espaçamento lateral para os slides */
 }
 
 .feedback-avatar,
@@ -78,13 +70,7 @@
 }
 
 .feedback-content p {
-    display: flex;
-    justify-content: space-between;
     color: black;
-}
-
-.feedback-content p span {
-    color: var(--color-primary-6);
 }
 
 .feedback-link:hover .feedback {
@@ -96,48 +82,15 @@ body.dark-mode #testimonial_chef {
     filter: invert(0);
 }
 
-/* Media Queries */
 @media screen and (max-width: 1400px) {
-    #testimonials {
-        justify-content: center;
-    }
-    #testimonial_chef {
-        display: none;
-    }
-    #testimonials_content {
-        width: 80%;
-    }
+    #testimonials_content { width: 80%; }
+    #testimonial_chef { display: none; }
 }
-
 @media screen and (max-width: 1170px) {
-    #testimonials {
-        flex-direction: column;
-    }
-    #testimonials .section-subtitle {
-        text-align: center;
-        font-size: 2.5rem;
-    }
-    #testimonials_content {
-        width: 70%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    #testimonials_content { width: 70%; }
 }
-
 @media screen and (max-width: 600px) {
-    #testimonials .section-subtitle {
-        font-size: 2rem;
-    }
-    #testimonials_content {
-        width: 100%;
-    }
-    .feedback {
-        flex-direction: column;
-        text-align: center;
-    }
-    /* Ajuste na altura para telas de celular */
-    #feedbacks {
-        height: 450px;
-    }
+    #testimonials_content { width: 100%; }
+    .feedback { flex-direction: column; text-align: center; }
+    .slider-container { height: 450px; }
 }

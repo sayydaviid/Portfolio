@@ -4,48 +4,43 @@
     position: relative;
 }
 
+/* --- MUDANÇA AQUI --- */
 #cta {
-    width: 35%;
+    width: 66%; /* Largura do container principal aumentada */
     display: flex;
     flex-direction: column;
     gap: 28px;
     margin-top: 5%;
+    /* Adicionado para garantir que os itens fiquem alinhados à esquerda */
+    align-items: flex-start; 
 }
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink-caret {
-    50% {
-        border-color: transparent;
-    }
-}
-
 
 #cta .title {
     font-size: 3.97rem;
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid; /* Cursor piscando */
-    animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
-    width: 100%; /* Ajuste conforme necessário */
     color: var(--color-neutral-1);
 }
 
-#cta .title span {
+#cta .title #typed-text {
     color: var(--color-primary-6);
 }
 
+.typed-cursor {
+    font-size: 3.97rem;
+    color: var(--color-primary-6);
+    animation: typedjsBlink 0.7s infinite;
+}
+
+@keyframes typedjsBlink {
+  50% { opacity: 0.0; }
+}
+
+/* --- MUDANÇA AQUI --- */
 #cta .description {
     font-size: 1.2rem;
+    width: 66%; /* Largura específica para o parágrafo de descrição */
 }
+/* --- FIM DAS MUDANÇAS --- */
+
 
 #cta_buttons {
     display: flex;
@@ -72,7 +67,6 @@
     box-shadow: none;
 }
 
-/* Estilização do banner para o efeito circular com borda em degradê */
 #banner {
     display: flex;
     align-items: center;
@@ -81,35 +75,24 @@
     z-index: 2;
 }
 
-#banner .image-container {
-    width: 200px; /* Tamanho do contêiner */
-    height: 200px; /* Tamanho do contêiner */
-    background: linear-gradient(135deg, #6a0dad, #8e44ad); /* Degradê ao redor da imagem */
-    border-radius: 50%; /* Torna o contêiner circular */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px; /* Espaço para criar o efeito de borda */
-}
-
 #banner img {
     width: 20%;
     height: 40%;
-    border-radius: 3%; /* Torna a imagem circular */
-    object-fit: cover; /* Ajusta a imagem para cobrir o espaço sem distorção */
+    border-radius: 3%;
+    object-fit: cover;
     position: absolute;
-    top: 10%; /* Move um pouco para baixo */
-    right: 10%; /* Desloca para a direita para melhor alinhamento */
+    top: 10%;
+    right: 10%;
 }
 
 .shape {
     background-color: var(--color-neutral-1);
-    width: 22%; /* Aumenta a largura para cobrir mais da área */
-    height: 41%; /* Reduz a altura para um ajuste mais suave */
+    width: 22%;
+    height: 41%;
     position: absolute;
-    border-radius: 3%; /* Ajusta o arredondamento para um efeito mais fluido */
-    top: 15%; /* Move um pouco para baixo */
-    right: 10%; /* Desloca para a direita para melhor alinhamento */
+    border-radius: 3%;
+    top: 15%;
+    right: 10%;
     z-index: 1;
 }
 
@@ -117,10 +100,9 @@ body.dark-mode .shape {
     background-color: var(--color-primary-6);
 }
 
-/* --- NOVO BREAKPOINT PARA NOTEBOOKS E TELAS MÉDIAS --- */
 @media screen and (max-width: 1400px) {
     #cta .title {
-        font-size: 3.5rem; /* Título um pouco menor */
+        font-size: 3.5rem;
     }
 }
 
@@ -142,6 +124,10 @@ body.dark-mode .shape {
         align-items: center;
     }
 
+    /* Garante que a descrição também ocupe mais espaço em telas menores */
+    #cta .description {
+        width: 80%; 
+    }
 }
 
 @media screen and (max-width: 450px) {
@@ -151,8 +137,4 @@ body.dark-mode .shape {
     #cta .title {
         font-size: 2.5rem;
     }
-    .theme-toggle {
-        top: 27px;
-        left: 290px;
-}
 }
