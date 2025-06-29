@@ -168,67 +168,87 @@
         </section>
 
         <section id="testimonials">
-            <img src="src/images/atomo.gif" id="testimonial_chef" alt="">
+        <img src="src/images/atomo.gif" id="testimonial_chef" alt="" draggable="false">
 
-            <div id="testimonials_content">
-                <h3 class="section-subtitle">
-                    Projetos Finalizados
-                </h3>
-                
-                <div class="slider-container">
-                    <div id="feedbacks">
-                        <a href="https://www.linkedin.com/posts/t4vares_recentemente-fui-contratado-para-o-desenvolvimento-activity-7341232561806848002-zZv1" target="_blank" rel="noopener noreferrer" class="feedback-link">
-                            <div class="feedback">
-                                <img src="src/images/provaspiagetianas.png" class="sbpc" alt="App Piaget CESUPA">
-                                <div class="feedback-content">
-                                    <p>Aplicativo Educacional para Avaliação Cognitiva</p>
-                                    <p>Desenvolvi do zero o app "Provas Piagetianas" em 40 dias, utilizando Flutter e Firebase, para o TCC de duas alunas do CESUPA. O app aplica testes baseados na teoria de Piaget, com interface intuitiva, exportação em PDF e funcionalidades completas de autenticação e gerenciamento de participantes.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://www.linkedin.com/posts/t4vares_durante-a-semana-de-19-a-23-de-maio-estive-activity-7332860896370733056-jm2f" target="_blank" rel="noopener noreferrer" class="feedback-link">
-                            <div class="feedback">
-                                <img src="src/images/sbrc2025.png" class="sbpc" alt="SBRC 2025">
-                                <div class="feedback-content">
-                                    <p>Publicações em Redes Quânticas no SBRC 2025</p>
-                                    <p>Apresentei artigo na trilha principal do SBRC 2025 em Natal-RN, com foco em agendamento de purificação em redes quânticas heterogêneas. Também contribuí no WQUNets com trabalho sobre rejuvenescimento e disponibilidade em redes de sensores quânticos.</p>
-                                </div>
-                            </div>
-                        </a>
-                            <a href="https://www.linkedin.com/posts/t4vares_eu-e-o-guilherme-sandim-como-diretores-do-activity-7321676205999472640-vg69" target="_blank" rel="noopener noreferrer" class="feedback-link">
-                                <div class="feedback">
-                                    <img src="src/images/semanacalouro.png" class="sbpc" alt="Semana do Calouro">
-                                    <div class="feedback-content">
-                                        <p>Semana do Calouro UFPA – Organização e Mentoria</p>
-                                        <p>Como diretor do Centro Acadêmico de SI, organizei a Semana do Calouro da UFPA ao lado de outros CAs. Coordenei a programação com empresas, laboratórios e mentorias acadêmicas. Ministrei palestra sobre minha trajetória universitária e profissional, incentivando o protagonismo estudantil e a participação científica desde o início da graduação.</p>
-                                    </div>
-                                </div>
-                            </a>
+        <div id="testimonials_content">
+            <h3 class="section-subtitle">
+            Projetos Finalizados
+            </h3>
 
-                        <a href="https://www.ctic.ufpa.br/index.php/em-destaque/315-participacao-da-equipe-de-ti-da-ufpa-na-76-reuniao-anual-da-sbpc" target="_blank" rel="noopener noreferrer" class="feedback-link">
-                            <div class="feedback">
-                                <img src="src/images/Imagem do WhatsApp de 2024-11-11 à(s) 21.12.48_450d9ef0.jpg" class="sbpc" alt="Professor Maker">
-                                <div class="feedback-content">
-                                    <p>Monitor da SBPC</p>
-                                    <p>Atuei como monitor de redes na SBPC 2024, onde fui responsável por assegurar a segurança e estabilidade da rede da UFPA. Trabalhei em conjunto com a equipe do CTIC, realizando o monitoramento e manutenção da infraestrutura de rede para garantir uma conexão segura e estável durante o evento.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="https://quantumnet.gercom.ufpa.br/arthur-pimentel-e-david-tavares-destacam-inovacoes-em-seguranca-de-rede-na-erad-no2-e-eramia-regiao-norte-2/" target="_blank" rel="noopener noreferrer" class="feedback-link">
-                            <div class="feedback">
-                                <img src="src/images/image.png" class="feedback-avatar" alt="ERAD 2023">
-                                <div class="feedback-content">
-                                    <p>III ERAD|ERAMIA-NO2 2023</p>
-                                    <p>No evento promovido pela Sociedade Brasileira de Computação (SBC), a III Escola Regional de Alto Desempenho Região Norte 2 (ERAD-NO2) e a III Escola Regional de Aprendizado de Máquina e Inteligência Artificial Região Norte 2 (ERAMIA) foram palco da apresentação de um artigo pelos estudantes de Iniciação Científica, Arthur Pimentel e David Tavares.</p>
-                                </div>
-                            </div>
-                        </a>
+            <!-- Viewport que mostra sempre 2 cards -->
+            <div id="feedbacks-viewport">
+            <!-- Container empilhado que será movido via JS -->
+            <div id="feedbacks">
+                <div class="feedback-slide">
+                <a href="https://www.linkedin.com/posts/t4vares_recentemente-fui-contratado-para-o-desenvolvimento-activity-7341232561806848002-zZv1"
+                    target="_blank" rel="noopener noreferrer" class="feedback-link" draggable="false">
+                    <div class="feedback">
+                    <img src="src/images/provaspiagetianas.png" class="sbpc" alt="App Piaget CESUPA" draggable="false">
+                    <div class="feedback-content">
+                        <p>Aplicativo Educacional para Avaliação Cognitiva</p>
+                        <p>Desenvolvi do zero o app "Provas Piagetianas" em 40 dias, utilizando Flutter e Firebase, para o TCC de duas alunas do CESUPA. O app aplica testes baseados na teoria de Piaget, com interface intuitiva, exportação em PDF e funcionalidades completas de autenticação e gerenciamento de participantes.</p>
                     </div>
+                    </div>
+                </a>
                 </div>
 
+                <div class="feedback-slide">
+                <a href="https://www.linkedin.com/posts/t4vares_durante-a-semana-de-19-a-23-de-maio-estive-activity-7332860896370733056-jm2f"
+                    target="_blank" rel="noopener noreferrer" class="feedback-link" draggable="false">
+                    <div class="feedback">
+                    <img src="src/images/sbrc2025.png" class="sbpc" alt="SBRC 2025" draggable="false">
+                    <div class="feedback-content">
+                        <p>Publicações em Redes Quânticas no SBRC 2025</p>
+                        <p>Apresentei artigo na trilha principal do SBRC 2025 em Natal-RN, com foco em agendamento de purificação em redes quânticas heterogêneas. Também contribuí no WQUNets com trabalho sobre rejuvenescimento e disponibilidade em redes de sensores quânticos.</p>
+                    </div>
+                    </div>
+                </a>
+                </div>
+
+                <div class="feedback-slide">
+                <a href="https://www.linkedin.com/posts/t4vares_eu-e-o-guilherme-sandim-como-diretores-do-activity-7321676205999472640-vg69"
+                    target="_blank" rel="noopener noreferrer" class="feedback-link" draggable="false">
+                    <div class="feedback">
+                    <img src="src/images/semanacalouro.png" class="sbpc" alt="Semana do Calouro UFPA" draggable="false">
+                    <div class="feedback-content">
+                        <p>Semana do Calouro UFPA – Organização e Mentoria</p>
+                        <p>Como diretor do Centro Acadêmico de SI, organizei a Semana do Calouro da UFPA ao lado de outros CAs. Coordenei a programação com empresas, laboratórios e mentorias acadêmicas. Ministrei palestra sobre minha trajetória universitária e profissional, incentivando o protagonismo estudantil e a participação científica desde o início da graduação.</p>
+                    </div>
+                    </div>
+                </a>
+                </div>
+
+                <div class="feedback-slide">
+                <a href="https://www.ctic.ufpa.br/index.php/em-destaque/315-participacao-da-equipe-de-ti-da-ufpa-na-76-reuniao-anual-da-sbpc"
+                    target="_blank" rel="noopener noreferrer" class="feedback-link" draggable="false">
+                    <div class="feedback">
+                    <img src="src/images/Imagem do WhatsApp de 2024-11-11 à(s) 21.12.48_450d9ef0.jpg"
+                        class="sbpc" alt="Monitor da SBPC 2024" draggable="false">
+                    <div class="feedback-content">
+                        <p>Monitor da SBPC</p>
+                        <p>Atuei como monitor de redes na SBPC 2024, onde fui responsável por assegurar a segurança e estabilidade da rede da UFPA. Trabalhei em conjunto com a equipe do CTIC, realizando o monitoramento e manutenção da infraestrutura de rede para garantir uma conexão segura e estável durante o evento.</p>
+                    </div>
+                    </div>
+                </a>
+                </div>
+
+                <div class="feedback-slide">
+                <a href="https://quantumnet.gercom.ufpa.br/arthur-pimentel-e-david-tavares-destacam-inovacoes-em-seguranca-de-rede-na-erad-no2-e-eramia-regiao-norte-2/"
+                    target="_blank" rel="noopener noreferrer" class="feedback-link" draggable="false">
+                    <div class="feedback">
+                    <img src="src/images/image.png" class="feedback-avatar" alt="ERAD|ERAMIA-NO2 2023" draggable="false">
+                    <div class="feedback-content">
+                        <p>III ERAD|ERAMIA-NO2 2023</p>
+                        <p>No evento promovido pela Sociedade Brasileira de Computação (SBC), a III Escola Regional de Alto Desempenho Região Norte 2 (ERAD-NO2) e a III Escola Regional de Aprendizado de Máquina e Inteligência Artificial Região Norte 2 (ERAMIA) foram palco da apresentação de um artigo pelos estudantes de Iniciação Científica, Arthur Pimentel e David Tavares.</p>
+                    </div>
+                    </div>
+                </a>
+                </div>
             </div>
+            </div>
+        </div>
         </section>
-    </main>
+            </main>
 
     <footer>
         <img src="src/images/wave.svg" alt="">

@@ -1,120 +1,217 @@
 $(document).ready(function() {
-    // Funções que podem rodar assim que o HTML estiver pronto
-    
-    // --- LÓGICA DO MENU MOBILE ---
-    const mobileBtn = $('#mobile_btn');
-    const overlay = $('#overlay');
-    const centralizedMenu = $('#centralized-menu');
-    $('#close-menu, #overlay, #centralized-menu a').on('click', () => mobileBtn.trigger('click'));
-    mobileBtn.on('click', function() {
-        const isOpening = $(this).find('i').hasClass('fa-bars');
-        $(this).find('i').toggleClass('fa-bars fa-x');
-        $(this).attr('aria-label', isOpening ? 'Fechar menu' : 'Abrir menu');
-        $('main, header').toggleClass('blur');
-        overlay.fadeToggle(200);
-        centralizedMenu.fadeToggle(200);
-    });
+  // --- LÓGICA DO MENU MOBILE (VERSÃO CORRETA RESTAURADA) ---
+  const mobileBtn = $('#mobile_btn');
+  const overlay = $('#overlay');
+  const centralizedMenu = $('#centralized-menu');
+  const content = $('main');
+  const header = $('header');
 
-    // --- LÓGICA DA NAVEGAÇÃO PRINCIPAL ---
-    const navItems = $('#nav_list .nav-item');
-    const navUnderline = $('.nav-underline');
-    let clickAction = false, scrollTimeout;
-    function positionUnderline(element) {
-        if (element.length && navUnderline.length) {
-            const item = element.parent();
-            if (item.length && item.position()) {
-                navUnderline.css({ left: item.position().left, width: item.outerWidth() });
-            }
-        }
+  function openMenu() {
+    overlay.fadeIn(200);
+    centralizedMenu.css('display', 'flex').fadeTo(200, 1);
+    content.addClass('blur');
+    header.addClass('blur');
+    mobileBtn.find('i').removeClass('fa-bars').addClass('fa-x');
+    mobileBtn.attr('aria-label', 'Fechar menu de navegação');
+  }
+
+  function closeMenu() {
+    centralizedMenu.fadeTo(200, 0, function() { $(this).hide(); });
+    overlay.fadeOut(200);
+    content.removeClass('blur');
+    header.removeClass('blur');
+    mobileBtn.find('i').removeClass('fa-x').addClass('fa-bars');
+    mobileBtn.attr('aria-label', 'Abrir menu de navegação');
+  }
+
+  mobileBtn.on('click', function() {
+    if ($(this).find('i').hasClass('fa-bars')) openMenu();
+    else closeMenu();
+  });
+
+  $('#close-menu, #overlay, #centralized-menu a').on('click', closeMenu);
+
+  // --- LÓGICA DA NAVEGAÇÃO PRINCIPAL ---
+  const navItems = $('#nav_list .nav-item');
+  const navUnderline = $('.nav-underline');
+  let clickAction = false;
+
+  function positionUnderline(element) {
+    if (!element.length || !navUnderline.length) return;
+    const item = element.parent();
+    navUnderline.css({
+      left: item.position().left,
+      width: item.outerWidth()
+    });
+  }
+
+  $('#nav_list .nav-item a').on('click', function() {
+    clickAction = true;
+    navItems.removeClass('active');
+    $(this).parent().addClass('active');
+    positionUnderline($(this));
+    setTimeout(() => clickAction = false, 800);
+  });
+
+  $(window).on('scroll', function() {
+    if (clickAction) return;
+    let activeIndex = 0;
+    const headerH = header.outerHeight();
+    $('section').each(function(i) {
+      if ($(window).scrollTop() >= $(this).offset().top - headerH - 40) {
+        activeIndex = i;
+      }
+    });
+    const $new = $(navItems[activeIndex]);
+    if (!$new.hasClass('active')) {
+      navItems.removeClass('active');
+      $new.addClass('active');
+      positionUnderline($new.find('a'));
     }
-    $('#nav_list .nav-item a').on('click', function() {
-        clickAction = true;
-        clearTimeout(scrollTimeout);
-        navItems.removeClass('active');
-        $(this).parent().addClass('active');
-        positionUnderline($(this));
-        setTimeout(() => { clickAction = false; }, 800);
+  });
+
+  // --- LÓGICA DO TEMA ESCURO ---
+  const themeSwitch = $('.switch');
+  if (localStorage.getItem("darkMode") === "enabled") {
+    $('body').addClass("dark-mode");
+    $('#theme-switch').prop('checked', true);
+  }
+  themeSwitch.on('click', () => {
+    $('body').toggleClass("dark-mode");
+    localStorage.setItem("darkMode",
+      $('body').hasClass("dark-mode") ? "enabled" : "disabled"
+    );
+  });
+
+  // --- ANIMAÇÕES COM SCROLLREVEAL ---
+  ScrollReveal().reveal('#cta, .dish, #testimonial_chef, .feedback', {
+    origin: 'bottom',
+    distance: '30px',
+    duration: 1000,
+    interval: 150
+  });
+
+  // --- EFEITO DE DIGITAÇÃO ---
+  if (document.querySelector('#typed-text')) {
+    const options = {
+      strings: ['Tavares :)','Desenvolvedor','Pesquisador','Prof. de Robótica','Tavares :)'],
+      typeSpeed: 70,
+      backSpeed: 50,
+      backDelay: 1500,
+      startDelay: 500,
+      loop: false,
+      smartBackspace: true,
+      showCursor: true,
+      cursorChar: '|',
+      onComplete: self => setTimeout(() => self.cursor.style.display = 'none', 1000)
+    };
+    new Typed('#typed-text', options);
+  }
+
+  // --- LÓGICA DE REDIMENSIONAMENTO DA JANELA ---
+  $(window)
+    .on('resize', () => positionUnderline($('#nav_list .nav-item.active a')))
+    .trigger('resize');
+
+  // --- LÓGICA DE “STACK” VERTICAL DE CARDS COM SWIPE BI-DIRECIONAL ---
+  const cardsData = [];
+  $('#feedbacks .feedback-slide').each(function() {
+    const $s = $(this);
+    cardsData.push({
+      href: $s.find('a.feedback-link').attr('href'),
+      imgSrc: $s.find('img').attr('src'),
+      imgAlt: $s.find('img').attr('alt'),
+      title: $s.find('.feedback-content p').first().text(),
+      desc:  $s.find('.feedback-content p').last().text()
     });
-    $(window).on('scroll', function() {
-        if (clickAction) return;
-        let activeSectionIndex = 0;
-        $('section').each(function(i) {
-            if ($(window).scrollTop() >= $(this).offset().top - $('header').outerHeight() - 40) {
-                activeSectionIndex = i;
-            }
-        });
-        const newActiveItem = $(navItems[activeSectionIndex]);
-        if (!newActiveItem.hasClass('active')) {
-            navItems.removeClass('active');
-            newActiveItem.addClass('active');
-            positionUnderline(newActiveItem.find('a'));
-        }
-    });
+  });
 
-    // --- LÓGICA DO TEMA ESCURO ---
-    const themeSwitch = $('.switch');
-    if (localStorage.getItem("darkMode") === "enabled") {
-        $('body').addClass("dark-mode");
-        $('#theme-switch').prop('checked', true);
-    }
-    themeSwitch.on('click', () => {
-        $('body').toggleClass("dark-mode");
-        localStorage.setItem("darkMode", $('body').hasClass("dark-mode") ? "enabled" : "disabled");
-    });
+  let firstIndex = 0, lastIndex = 1;
+  const $viewport  = $('#feedbacks-viewport');
+  const $container = $('#feedbacks');
+  const cardHeight = $container.find('.feedback-slide').outerHeight();
+  const gap        = parseInt($container.css('gap')) || 20;
+  const threshold  = 50;
 
-    // --- ANIMAÇÕES COM SCROLLREVEAL ---
-    ScrollReveal().reveal('#cta, .dish, #testimonial_chef, .feedback', {
-        origin: 'bottom', distance: '30px', duration: 1000, interval: 150
-    });
+  function makeSlide(d) {
+    return $(`
+      <div class="feedback-slide">
+        <a href="${d.href}" class="feedback-link" draggable="false">
+          <div class="feedback">
+            <img src="${d.imgSrc}" class="sbpc" alt="${d.imgAlt}" draggable="false">
+            <div class="feedback-content">
+              <p>${d.title}</p><p>${d.desc}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    `);
+  }
 
-    // --- EFEITO DE DIGITAÇÃO ---
-    if (document.querySelector('#typed-text')) {
-        const options = {
-            strings: ['Tavares :)', 'Desenvolvedor', 'Pesquisador', 'Prof. de Robótica', 'Tavares :)'],
-            typeSpeed: 70,
-            backSpeed: 50,
-            backDelay: 1500,
-            startDelay: 500,
-            loop: false, 
-            smartBackspace: true,
-            showCursor: true,
-            cursorChar: '|',
-            onComplete: function(self) {
-                setTimeout(function() {
-                    self.cursor.style.display = 'none';
-                }, 1000);
-            }
-        };
-        const typed = new Typed('#typed-text', options);
-    }
-    
-    // --- LÓGICA DE REDIMENSIONAMENTO DA JANELA ---
-    $(window).on('resize', () => positionUnderline($('#nav_list .nav-item.active a'))).trigger('resize');
-});
+  function renderInitial() {
+    $container.empty()
+      .append(makeSlide(cardsData[firstIndex]))
+      .append(makeSlide(cardsData[lastIndex]));
+    $container.css('transform','translateY(0)');
+  }
 
+  renderInitial();
 
-// --- LÓGICA DO CARROSSEL (EXECUTADA SÓ APÓS O CARREGAMENTO TOTAL DA PÁGINA) ---
-window.addEventListener('load', function() {
-    const slider = document.querySelector('#feedbacks');
-    if (slider) {
-        const slideCount = slider.children.length;
+  // autoplay
+  const autoDelay = 5000, resumeDelay = 8000;
+  let autoplayInterval, resumeTimeout;
+  function startAutoplay() {
+    clearInterval(autoplayInterval);
+    autoplayInterval = setInterval(() => slideTo('next'), autoDelay);
+  }
+  startAutoplay();
 
-        const sliderInstance = tns({
-            container: '#feedbacks',
-            axis: 'vertical',
-            items: 2,
-            slideBy: 'page',
-            mouseDrag: true,
-            loop: false,
-            controls: false,
-            nav: false,
-            swipeAngle: false,
-            // A biblioteca desativa automaticamente se não houver itens suficientes
-        });
+  // swipe + pausa autoplay
+  let startY=0, deltaY=0, dragging=false, isDrag=false;
+  $viewport.find('a.feedback-link, a.feedback-link img').on('dragstart', e=>e.preventDefault());
 
-        const linksInsideSlider = slider.querySelectorAll('.feedback-link');
-        linksInsideSlider.forEach(link => {
-            link.addEventListener('dragstart', (e) => e.preventDefault());
-        });
-    }
+  function slideTo(dir) {
+    const offset = (dir==='next' ? -1 : 1)*(cardHeight+gap);
+    $container.css('transform', `translateY(${offset}px)`);
+    setTimeout(() => {
+      if (dir==='next') {
+        $container.children().first().remove();
+        firstIndex = (firstIndex+1)%cardsData.length;
+        lastIndex  = (lastIndex+1)%cardsData.length;
+        $container.append(makeSlide(cardsData[(lastIndex+1)%cardsData.length]));
+      } else {
+        $container.children().last().remove();
+        firstIndex = (firstIndex-1+cardsData.length)%cardsData.length;
+        lastIndex  = (lastIndex-1+cardsData.length)%cardsData.length;
+        $container.prepend(makeSlide(cardsData[firstIndex]));
+      }
+      $container.css('transition','none').css('transform','translateY(0)');
+      // reativa a transição
+      setTimeout(()=>$container.css('transition','transform 0.3s ease'),20);
+    }, 300);
+  }
+
+  $viewport.on('mousedown touchstart', e => {
+    dragging = true; isDrag = false;
+    clearInterval(autoplayInterval);
+    clearTimeout(resumeTimeout);
+    startY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
+  });
+  $viewport.on('mousemove touchmove', e => {
+    if (!dragging) return;
+    const y = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
+    deltaY = y - startY;
+    if (Math.abs(deltaY) > 5) isDrag = true;
+    $container.css('transform', `translateY(${deltaY}px)`);
+  });
+  $viewport.on('mouseup mouseleave touchend touchcancel', () => {
+    if (!dragging) return;
+    dragging = false;
+    if (deltaY < -threshold) slideTo('next');
+    else if (deltaY > threshold) slideTo('prev');
+    else $container.css('transform','translateY(0)');
+    deltaY = 0;
+    resumeTimeout = setTimeout(startAutoplay, resumeDelay);
+  });
+  $viewport.on('click', 'a.feedback-link', e => { if (isDrag) e.preventDefault(); });
 });
