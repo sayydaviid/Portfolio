@@ -92,7 +92,7 @@
    Efeito de hover nos cards (traz pra frente)
    =================================================================== */
 .feedback:hover {
-    transform: translateY(-10px) scale(1);
+    transform: translateY(-5px) scale(1);
     box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 /* Inverte de volta no dark mode */
