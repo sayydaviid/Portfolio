@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // --- LÓGICA DO MENU MOBILE (VERSÃO CORRETA RESTAURADA) ---
+  // --- LÓGICA DO MENU MOBILE ---
   const mobileBtn = $('#mobile_btn');
   const overlay = $('#overlay');
   const centralizedMenu = $('#centralized-menu');
@@ -14,7 +14,6 @@ $(document).ready(function() {
     mobileBtn.find('i').removeClass('fa-bars').addClass('fa-x');
     mobileBtn.attr('aria-label', 'Fechar menu de navegação');
   }
-
   function closeMenu() {
     centralizedMenu.fadeTo(200, 0, function() { $(this).hide(); });
     overlay.fadeOut(200);
@@ -23,28 +22,21 @@ $(document).ready(function() {
     mobileBtn.find('i').removeClass('fa-x').addClass('fa-bars');
     mobileBtn.attr('aria-label', 'Abrir menu de navegação');
   }
-
   mobileBtn.on('click', function() {
     if ($(this).find('i').hasClass('fa-bars')) openMenu();
     else closeMenu();
   });
-
   $('#close-menu, #overlay, #centralized-menu a').on('click', closeMenu);
 
   // --- LÓGICA DA NAVEGAÇÃO PRINCIPAL ---
   const navItems = $('#nav_list .nav-item');
   const navUnderline = $('.nav-underline');
   let clickAction = false;
-
-  function positionUnderline(element) {
-    if (!element.length || !navUnderline.length) return;
-    const item = element.parent();
-    navUnderline.css({
-      left: item.position().left,
-      width: item.outerWidth()
-    });
+  function positionUnderline(el) {
+    if (!el.length || !navUnderline.length) return;
+    const item = el.parent();
+    navUnderline.css({ left: item.position().left, width: item.outerWidth() });
   }
-
   $('#nav_list .nav-item a').on('click', function() {
     clickAction = true;
     navItems.removeClass('active');
@@ -52,15 +44,12 @@ $(document).ready(function() {
     positionUnderline($(this));
     setTimeout(() => clickAction = false, 800);
   });
-
   $(window).on('scroll', function() {
     if (clickAction) return;
     let activeIndex = 0;
     const headerH = header.outerHeight();
     $('section').each(function(i) {
-      if ($(window).scrollTop() >= $(this).offset().top - headerH - 40) {
-        activeIndex = i;
-      }
+      if ($(window).scrollTop() >= $(this).offset().top - headerH - 40) activeIndex = i;
     });
     const $new = $(navItems[activeIndex]);
     if (!$new.hasClass('active')) {
@@ -72,48 +61,39 @@ $(document).ready(function() {
 
   // --- LÓGICA DO TEMA ESCURO ---
   const themeSwitch = $('.switch');
-  if (localStorage.getItem("darkMode") === "enabled") {
-    $('body').addClass("dark-mode");
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    $('body').addClass('dark-mode');
     $('#theme-switch').prop('checked', true);
   }
   themeSwitch.on('click', () => {
-    $('body').toggleClass("dark-mode");
-    localStorage.setItem("darkMode",
-      $('body').hasClass("dark-mode") ? "enabled" : "disabled"
+    $('body').toggleClass('dark-mode');
+    localStorage.setItem('darkMode',
+      $('body').hasClass('dark-mode') ? 'enabled' : 'disabled'
     );
   });
 
   // --- ANIMAÇÕES COM SCROLLREVEAL ---
   ScrollReveal().reveal('#cta, .dish, #testimonial_chef, .feedback', {
-    origin: 'bottom',
-    distance: '30px',
-    duration: 1000,
-    interval: 150
+    origin: 'bottom', distance: '30px', duration: 1000, interval: 150
   });
 
   // --- EFEITO DE DIGITAÇÃO ---
   if (document.querySelector('#typed-text')) {
-    const options = {
+    new Typed('#typed-text', {
       strings: ['Tavares :)','Desenvolvedor','Pesquisador','Prof. de Robótica','Tavares :)'],
-      typeSpeed: 70,
-      backSpeed: 50,
-      backDelay: 1500,
-      startDelay: 500,
-      loop: false,
-      smartBackspace: true,
-      showCursor: true,
-      cursorChar: '|',
+      typeSpeed: 70, backSpeed: 50, backDelay: 1500,
+      startDelay: 500, loop: false, smartBackspace: true,
+      showCursor: true, cursorChar: '|',
       onComplete: self => setTimeout(() => self.cursor.style.display = 'none', 1000)
-    };
-    new Typed('#typed-text', options);
+    });
   }
 
-  // --- LÓGICA DE REDIMENSIONAMENTO DA JANELA ---
+  // --- REDIMENSIONAMENTO DA JANELA ---
   $(window)
     .on('resize', () => positionUnderline($('#nav_list .nav-item.active a')))
     .trigger('resize');
 
-  // --- LÓGICA DE “STACK” VERTICAL DE CARDS COM SWIPE BI-DIRECIONAL ---
+  // --- STACK VERTICAL DE CARDS COM SWIPE + AUTOPLAY ---
   const cardsData = [];
   $('#feedbacks .feedback-slide').each(function() {
     const $s = $(this);
@@ -132,6 +112,9 @@ $(document).ready(function() {
   const cardHeight = $container.find('.feedback-slide').outerHeight();
   const gap        = parseInt($container.css('gap')) || 20;
   const threshold  = 50;
+  let startY = 0, deltaY = 0, dragging = false, isDrag = false;
+  const autoDelay = 5000, resumeDelay = 8000;
+  let autoplayInterval, resumeTimeout;
 
   function makeSlide(d) {
     return $(`
@@ -151,43 +134,41 @@ $(document).ready(function() {
   function renderInitial() {
     $container.empty()
       .append(makeSlide(cardsData[firstIndex]))
-      .append(makeSlide(cardsData[lastIndex]));
-    $container.css('transform','translateY(0)');
+      .append(makeSlide(cardsData[lastIndex]))
+      .css('transform', 'translateY(0)');
   }
-
   renderInitial();
 
   // autoplay
-  const autoDelay = 5000, resumeDelay = 8000;
-  let autoplayInterval, resumeTimeout;
   function startAutoplay() {
     clearInterval(autoplayInterval);
     autoplayInterval = setInterval(() => slideTo('next'), autoDelay);
   }
   startAutoplay();
 
-  // swipe + pausa autoplay
-  let startY=0, deltaY=0, dragging=false, isDrag=false;
-  $viewport.find('a.feedback-link, a.feedback-link img').on('dragstart', e=>e.preventDefault());
+  // prevent native drag on links/images
+  $viewport.find('a.feedback-link, a.feedback-link img').on('dragstart', e => e.preventDefault());
+
+  // fallback for iOS <16: prevent page scrolling inside viewport
+  $viewport[0].addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 
   function slideTo(dir) {
-    const offset = (dir==='next' ? -1 : 1)*(cardHeight+gap);
+    const offset = (dir === 'next' ? -1 : 1) * (cardHeight + gap);
     $container.css('transform', `translateY(${offset}px)`);
     setTimeout(() => {
-      if (dir==='next') {
+      if (dir === 'next') {
         $container.children().first().remove();
-        firstIndex = (firstIndex+1)%cardsData.length;
-        lastIndex  = (lastIndex+1)%cardsData.length;
-        $container.append(makeSlide(cardsData[(lastIndex+1)%cardsData.length]));
+        firstIndex = (firstIndex + 1) % cardsData.length;
+        lastIndex  = (lastIndex + 1) % cardsData.length;
+        $container.append(makeSlide(cardsData[(lastIndex + 1) % cardsData.length]));
       } else {
         $container.children().last().remove();
-        firstIndex = (firstIndex-1+cardsData.length)%cardsData.length;
-        lastIndex  = (lastIndex-1+cardsData.length)%cardsData.length;
+        firstIndex = (firstIndex - 1 + cardsData.length) % cardsData.length;
+        lastIndex  = (lastIndex - 1 + cardsData.length) % cardsData.length;
         $container.prepend(makeSlide(cardsData[firstIndex]));
       }
-      $container.css('transition','none').css('transform','translateY(0)');
-      // reativa a transição
-      setTimeout(()=>$container.css('transition','transform 0.3s ease'),20);
+      $container.css('transition', 'none').css('transform', 'translateY(0)');
+      setTimeout(() => $container.css('transition', 'transform 0.3s ease'), 20);
     }, 300);
   }
 
@@ -209,9 +190,11 @@ $(document).ready(function() {
     dragging = false;
     if (deltaY < -threshold) slideTo('next');
     else if (deltaY > threshold) slideTo('prev');
-    else $container.css('transform','translateY(0)');
+    else $container.css('transform', 'translateY(0)');
     deltaY = 0;
     resumeTimeout = setTimeout(startAutoplay, resumeDelay);
   });
-  $viewport.on('click', 'a.feedback-link', e => { if (isDrag) e.preventDefault(); });
+  $viewport.on('click', 'a.feedback-link', e => {
+    if (isDrag) e.preventDefault();
+  });
 });
