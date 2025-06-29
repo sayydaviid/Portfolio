@@ -28,6 +28,13 @@ $(document).ready(function() {
   });
   $('#close-menu, #overlay, #centralized-menu a').on('click', closeMenu);
 
+   // --- FECHAR COM ESCAPE ---
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.is(':visible')) {
+      closeMenu();
+    }
+  });
+  
   // --- LÓGICA DA NAVEGAÇÃO PRINCIPAL ---
   const navItems = $('#nav_list .nav-item');
   const navUnderline = $('.nav-underline');
