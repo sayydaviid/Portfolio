@@ -49,7 +49,9 @@ $(document).ready(function() {
     let activeIndex = 0;
     const headerH = header.outerHeight();
     $('section').each(function(i) {
-      if ($(window).scrollTop() >= $(this).offset().top - headerH - 40) activeIndex = i;
+      if ($(window).scrollTop() >= $(this).offset().top - headerH - 40) {
+        activeIndex = i;
+      }
     });
     const $new = $(navItems[activeIndex]);
     if (!$new.hasClass('active')) {
@@ -98,11 +100,11 @@ $(document).ready(function() {
   $('#feedbacks .feedback-slide').each(function() {
     const $s = $(this);
     cardsData.push({
-      href: $s.find('a.feedback-link').attr('href'),
+      href:   $s.find('a.feedback-link').attr('href'),
       imgSrc: $s.find('img').attr('src'),
       imgAlt: $s.find('img').attr('alt'),
-      title: $s.find('.feedback-content p').first().text(),
-      desc:  $s.find('.feedback-content p').last().text()
+      title:  $s.find('.feedback-content p').first().text(),
+      desc:   $s.find('.feedback-content p').last().text()
     });
   });
 
@@ -112,7 +114,8 @@ $(document).ready(function() {
   const cardHeight = $container.find('.feedback-slide').outerHeight();
   const gap        = parseInt($container.css('gap')) || 20;
   const threshold  = 50;
-  let startY = 0, deltaY = 0, dragging = false, isDrag = false;
+  const DURATION   = 300;
+  let startY=0, deltaY=0, dragging=false, isDrag=false;
   const autoDelay = 5000, resumeDelay = 8000;
   let autoplayInterval, resumeTimeout;
 
@@ -135,49 +138,59 @@ $(document).ready(function() {
     $container.empty()
       .append(makeSlide(cardsData[firstIndex]))
       .append(makeSlide(cardsData[lastIndex]))
-      .css('transform', 'translateY(0)');
+      .css('transform','translateY(0)');
   }
   renderInitial();
 
-  // autoplay
+  function slideNext() {
+    const newIdx = (lastIndex + 1) % cardsData.length;
+    const $new   = makeSlide(cardsData[newIdx]);
+    $container.append($new);
+    $container[0].offsetHeight; // force reflow
+    $container.css('transform', `translateY(-${cardHeight+gap}px)`);
+    setTimeout(() => {
+      $container.children().first().remove();
+      firstIndex = (firstIndex + 1) % cardsData.length;
+      lastIndex  = newIdx;
+      $container.css('transition','none').css('transform','translateY(0)');
+      setTimeout(() => $container.css('transition', `transform ${DURATION}ms ease`), 20);
+    }, DURATION);
+  }
+
+  function slidePrev() {
+    const prevIdx = (firstIndex - 1 + cardsData.length) % cardsData.length;
+    const $prev   = makeSlide(cardsData[prevIdx]);
+    $container.prepend($prev)
+      .css('transition','none')
+      .css('transform', `translateY(-${cardHeight+gap}px)`);
+    $container[0].offsetHeight;
+    $container.css('transition', `transform ${DURATION}ms ease`)
+      .css('transform','translateY(0)');
+    setTimeout(() => {
+      $container.children().last().remove();
+      firstIndex = prevIdx;
+      lastIndex  = (lastIndex - 1 + cardsData.length) % cardsData.length;
+      $container.css('transition','none').css('transform','translateY(0)');
+      setTimeout(() => $container.css('transition', `transform ${DURATION}ms ease`), 20);
+    }, DURATION);
+  }
+
   function startAutoplay() {
     clearInterval(autoplayInterval);
-    autoplayInterval = setInterval(() => slideTo('next'), autoDelay);
+    autoplayInterval = setInterval(slideNext, autoDelay);
   }
   startAutoplay();
 
-  // prevent native drag on links/images
-  $viewport.find('a.feedback-link, a.feedback-link img').on('dragstart', e => e.preventDefault());
-
-  // fallback for iOS <16: prevent page scrolling inside viewport
+  // prevent native drag and page scroll
+  $viewport.find('a.feedback-link, img').on('dragstart', e => e.preventDefault());
   $viewport[0].addEventListener('touchmove', e => e.preventDefault(), { passive: false });
-
-  function slideTo(dir) {
-    const offset = (dir === 'next' ? -1 : 1) * (cardHeight + gap);
-    $container.css('transform', `translateY(${offset}px)`);
-    setTimeout(() => {
-      if (dir === 'next') {
-        $container.children().first().remove();
-        firstIndex = (firstIndex + 1) % cardsData.length;
-        lastIndex  = (lastIndex + 1) % cardsData.length;
-        $container.append(makeSlide(cardsData[(lastIndex + 1) % cardsData.length]));
-      } else {
-        $container.children().last().remove();
-        firstIndex = (firstIndex - 1 + cardsData.length) % cardsData.length;
-        lastIndex  = (lastIndex - 1 + cardsData.length) % cardsData.length;
-        $container.prepend(makeSlide(cardsData[firstIndex]));
-      }
-      $container.css('transition', 'none').css('transform', 'translateY(0)');
-      setTimeout(() => $container.css('transition', 'transform 0.3s ease'), 20);
-    }, 300);
-  }
 
   $viewport.on('mousedown touchstart', e => {
     dragging = true; isDrag = false;
-    clearInterval(autoplayInterval);
-    clearTimeout(resumeTimeout);
+    clearInterval(autoplayInterval); clearTimeout(resumeTimeout);
     startY = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
   });
+
   $viewport.on('mousemove touchmove', e => {
     if (!dragging) return;
     const y = e.originalEvent.touches ? e.originalEvent.touches[0].pageY : e.pageY;
@@ -185,15 +198,17 @@ $(document).ready(function() {
     if (Math.abs(deltaY) > 5) isDrag = true;
     $container.css('transform', `translateY(${deltaY}px)`);
   });
+
   $viewport.on('mouseup mouseleave touchend touchcancel', () => {
     if (!dragging) return;
     dragging = false;
-    if (deltaY < -threshold) slideTo('next');
-    else if (deltaY > threshold) slideTo('prev');
-    else $container.css('transform', 'translateY(0)');
+    if (deltaY < -threshold) slideNext();
+    else if (deltaY > threshold) slidePrev();
+    else $container.css('transform','translateY(0)');
     deltaY = 0;
     resumeTimeout = setTimeout(startAutoplay, resumeDelay);
   });
+
   $viewport.on('click', 'a.feedback-link', e => {
     if (isDrag) e.preventDefault();
   });
